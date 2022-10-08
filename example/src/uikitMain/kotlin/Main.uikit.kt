@@ -40,7 +40,7 @@ class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
 
     override fun application(
         application: UIApplication,
-        didFinishLaunchingWithOptions: Map<Any?, *>?
+        didFinishLaunchingWithOptions: Map<Any?, *>?,
     ): Boolean {
         window = UIWindow(frame = UIScreen.mainScreen.bounds)
         window!!.rootViewController = Application("InsetsX") {
