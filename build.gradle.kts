@@ -1,9 +1,6 @@
 plugins {
-    //trick: for the same plugin versions in all sub-modules
-    id("com.android.library").version("7.3.0").apply(false)
-    kotlin("multiplatform").version("1.7.10").apply(false)
-}
+    val kotlinVersion = libs.versions.kotlin.get()
 
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+    kotlin("multiplatform").version(kotlinVersion) apply false
+    alias(libs.plugins.android.library) apply false
 }
