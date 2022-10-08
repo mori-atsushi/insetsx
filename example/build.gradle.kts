@@ -1,15 +1,86 @@
+import org.jetbrains.compose.experimental.dsl.IOSDevices
+
 plugins {
     kotlin("multiplatform")
     alias(libs.plugins.android.application)
+    alias(libs.plugins.jetbrains.compose)
 }
 
 kotlin {
     android()
+    iosX64("uikitX64") {
+        binaries {
+            executable {
+                entryPoint = "main"
+                freeCompilerArgs += listOf(
+                    "-linker-option", "-framework", "-linker-option", "Metal",
+                    "-linker-option", "-framework", "-linker-option", "CoreText",
+                    "-linker-option", "-framework", "-linker-option", "CoreGraphics"
+                )
+            }
+        }
+    }
+    iosArm64("uikitArm64") {
+        binaries {
+            executable {
+                entryPoint = "main"
+                freeCompilerArgs += listOf(
+                    "-linker-option", "-framework", "-linker-option", "Metal",
+                    "-linker-option", "-framework", "-linker-option", "CoreText",
+                    "-linker-option", "-framework", "-linker-option", "CoreGraphics"
+                )
+            }
+        }
+    }
 
     sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(compose.ui)
+                implementation(compose.foundation)
+                implementation(compose.material)
+                implementation(compose.runtime)
+            }
+        }
+
         val androidMain by getting {
+            dependsOn(commonMain)
             dependencies {
                 implementation(libs.androidx.appcompat)
+                implementation(libs.androidx.activity.compose)
+            }
+        }
+        val uikitMain by creating {
+            dependsOn(commonMain)
+        }
+        val uikitX64Main by getting {
+            dependsOn(uikitMain)
+        }
+        val uikitArm64Main by getting {
+            dependsOn(uikitMain)
+        }
+    }
+}
+
+compose {
+    experimental {
+        uikit.application {
+            bundleIdPrefix = "com.moriatsushi"
+            projectName = "InsetsX"
+            deployConfigurations {
+                simulator("IPhone13") {
+                    //Usage: ./gradlew :example:iosDeployIPhone13Debug
+                    device = IOSDevices.IPHONE_13
+                }
+                simulator("IPad") {
+                    //Usage: ./gradlew :example:iosDeployIPadDebug
+                    device = IOSDevices.IPAD_MINI_6th_Gen
+                }
+                connectedDevice("Device") {
+                    //First need specify your teamId here, or in local.properties (compose.ios.teamId=***)
+                    //teamId="***"
+                    //Usage: ./gradlew :example:iosDeployDeviceRelease
+                }
             }
         }
     }
