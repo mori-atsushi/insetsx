@@ -6,6 +6,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.moriatsushi.insetsx.Greeting
 
 @Composable
 fun ExampleApp() {
@@ -13,6 +14,6 @@ fun ExampleApp() {
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text("Hello, World")
+        Text(Greeting().greeting())
     }
 }

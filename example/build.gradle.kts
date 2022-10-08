@@ -36,6 +36,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":insetsx"))
                 implementation(compose.ui)
                 implementation(compose.foundation)
                 implementation(compose.material)
