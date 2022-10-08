@@ -15,7 +15,8 @@ kotlin {
                 freeCompilerArgs += listOf(
                     "-linker-option", "-framework", "-linker-option", "Metal",
                     "-linker-option", "-framework", "-linker-option", "CoreText",
-                    "-linker-option", "-framework", "-linker-option", "CoreGraphics"
+                    "-linker-option", "-framework", "-linker-option", "CoreGraphics",
+                    "-Xverify-compiler=false", // Workaround for https://youtrack.jetbrains.com/issue/KT-53561
                 )
             }
         }
@@ -27,7 +28,8 @@ kotlin {
                 freeCompilerArgs += listOf(
                     "-linker-option", "-framework", "-linker-option", "Metal",
                     "-linker-option", "-framework", "-linker-option", "CoreText",
-                    "-linker-option", "-framework", "-linker-option", "CoreGraphics"
+                    "-linker-option", "-framework", "-linker-option", "CoreGraphics",
+                    "-Xverify-compiler=false", // Workaround for https://youtrack.jetbrains.com/issue/KT-53561
                 )
             }
         }
@@ -41,6 +43,9 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material)
                 implementation(compose.runtime)
+
+                // Workaround for https://youtrack.jetbrains.com/issue/KT-41821
+                implementation(libs.kotlinx.atomicfu)
             }
         }
 

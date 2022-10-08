@@ -17,6 +17,7 @@ dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
             version("kotlin", "1.7.10")
+            version("kotlinx-atomicfu", "0.17.3")
             version("agp", "7.3.0")
             version("androidx-appcompat", "1.5.1")
             version("androidx-activity", "1.6.0")
@@ -24,6 +25,8 @@ dependencyResolutionManagement {
             version("spotless", "6.11.0")
             version("ktlint", "0.47.1")
 
+            library("kotlinx-atomicfu", "org.jetbrains.kotlinx", "atomicfu")
+                .versionRef("kotlinx-atomicfu")
             library("androidx-appcompat", "androidx.appcompat", "appcompat")
                 .versionRef("androidx-appcompat")
             library("androidx-activity-compose", "androidx.activity", "activity-compose")
