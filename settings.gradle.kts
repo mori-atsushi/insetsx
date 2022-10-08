@@ -21,6 +21,8 @@ dependencyResolutionManagement {
             version("androidx-appcompat", "1.5.1")
             version("androidx-activity", "1.6.0")
             version("jetbrains-compose", "1.2.0-beta02")
+            version("spotless", "6.11.0")
+            version("ktlint", "0.47.1")
 
             library("androidx-appcompat", "androidx.appcompat", "appcompat")
                 .versionRef("androidx-appcompat")
@@ -33,6 +35,8 @@ dependencyResolutionManagement {
                 .versionRef("agp")
             plugin("jetbrains-compose", "org.jetbrains.compose")
                 .versionRef("jetbrains-compose")
+            plugin("spotless", "com.diffplug.spotless")
+                .versionRef("spotless")
         }
     }
 }
