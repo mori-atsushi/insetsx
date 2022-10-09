@@ -43,7 +43,7 @@ fun ExampleApp() {
 
 @Composable
 private fun ExampleTopAppBar(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     TopAppBar(
         modifier = modifier
@@ -60,13 +60,15 @@ private fun ExampleTopAppBar(
 
 @Composable
 private fun ExampleBottomAppBar(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     BottomAppBar(
         modifier = modifier
             .background(MaterialTheme.colors.primarySurface)
             .windowInsetsPadding(
-                WindowInsets.safeDrawing.only(WindowInsetsSides.Bottom + WindowInsetsSides.Horizontal)
+                WindowInsets.safeDrawing.only(
+                    WindowInsetsSides.Bottom + WindowInsetsSides.Horizontal
+                )
             ),
         elevation = 0.dp
     ) {
@@ -81,7 +83,7 @@ private fun ExampleBottomAppBar(
 
 @Composable
 private fun ExampleContent(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier.windowInsetsPadding(

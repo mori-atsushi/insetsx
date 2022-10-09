@@ -7,7 +7,7 @@ import platform.UIKit.UIWindow
 @Composable
 fun WindowInsetsProvider(
     window: UIWindow,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(
         LocalView provides window,

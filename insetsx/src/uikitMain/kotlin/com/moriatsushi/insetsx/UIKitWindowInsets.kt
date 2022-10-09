@@ -4,14 +4,14 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
+import kotlin.math.roundToInt
 import kotlinx.cinterop.useContents
 import platform.UIKit.UIView
 import platform.UIKit.safeAreaInsets
-import kotlin.math.roundToInt
 
 @Stable
 class UIKitWindowInsets(
-    private val view: UIView
+    private val view: UIView,
 ) : WindowInsets {
     override fun getBottom(density: Density): Int {
         return view.safeAreaInsets.useContents { bottom.roundToInt() }
