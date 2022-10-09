@@ -21,6 +21,9 @@ kotlin {
             dependencies {
                 implementation(compose.foundation)
                 implementation(compose.runtime)
+
+                // Workaround for https://youtrack.jetbrains.com/issue/KT-41821
+                implementation(libs.kotlinx.atomicfu)
             }
         }
         val commonTest by getting {
