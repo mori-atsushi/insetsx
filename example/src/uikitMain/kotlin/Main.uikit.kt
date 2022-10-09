@@ -1,4 +1,5 @@
 import androidx.compose.ui.window.Application
+import com.moriatsushi.insetsx.WindowInsetsProvider
 import com.moriatsushi.insetsx.example.ExampleApp
 import kotlinx.cinterop.ObjCObjectBase
 import kotlinx.cinterop.autoreleasepool
@@ -44,7 +45,11 @@ class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
     ): Boolean {
         window = UIWindow(frame = UIScreen.mainScreen.bounds)
         window!!.rootViewController = Application("InsetsX") {
-            ExampleApp()
+            WindowInsetsProvider(
+                window = window!!
+            ) {
+                ExampleApp()
+            }
         }
         window!!.makeKeyAndVisible()
         return true
