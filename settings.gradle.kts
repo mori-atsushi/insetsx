@@ -16,12 +16,12 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("libs") {
-            version("kotlin", "1.7.10")
-            version("kotlinx-atomicfu", "0.17.3")
-            version("agp", "7.3.0")
+            version("kotlin", "1.7.20")
+            version("kotlinx-atomicfu", "0.18.4")
+            version("agp", "7.3.1")
             version("androidx-appcompat", "1.5.1")
             version("androidx-activity", "1.6.0")
-            version("jetbrains-compose", "1.2.0-beta02")
+            version("jetbrains-compose", "1.2.0")
             version("spotless", "6.11.0")
             version("ktlint", "0.47.1")
 
