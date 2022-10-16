@@ -1,5 +1,7 @@
 package com.moriatsushi.insetsx
 
+import androidx.compose.animation.core.FastOutLinearInEasing
+import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.only
 import kotlinx.cinterop.CValue
@@ -53,20 +55,20 @@ internal class WindowInsetsHolder(
     @ObjCAction
     fun keyboardWillShow(arg: NSNotification) {
         val height = arg.keyboardHeight
-        val durationMills = arg.keyboardAnimationDurationMills
+        val durationMillis = arg.keyboardAnimationDurationMills
 
         scope.launch {
-            ime.update(height, durationMills)
+            ime.update(height, durationMillis, LinearOutSlowInEasing)
         }
     }
 
     @Suppress("unused")
     @ObjCAction
     fun keyboardWillHide(arg: NSNotification) {
-        val durationMills = arg.keyboardAnimationDurationMills
+        val durationMillis = arg.keyboardAnimationDurationMills
 
         scope.launch {
-            ime.update(0, durationMills)
+            ime.update(0, durationMillis, FastOutLinearInEasing)
         }
     }
 
