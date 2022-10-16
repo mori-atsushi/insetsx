@@ -21,7 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.moriatsushi.insetsx.safeDrawing
+import com.moriatsushi.insetsx.systemBars
 
 @Composable
 fun ExampleApp() {
@@ -49,7 +49,7 @@ private fun ExampleTopAppBar(
         modifier = modifier
             .background(MaterialTheme.colors.primarySurface)
             .windowInsetsPadding(
-                WindowInsets.safeDrawing.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal)
+                WindowInsets.systemBars.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal)
             ),
         title = {
             Text("InsetsX")
@@ -66,7 +66,7 @@ private fun ExampleBottomAppBar(
         modifier = modifier
             .background(MaterialTheme.colors.primarySurface)
             .windowInsetsPadding(
-                WindowInsets.safeDrawing.only(
+                WindowInsets.systemBars.only(
                     WindowInsetsSides.Bottom + WindowInsetsSides.Horizontal
                 )
             ),
@@ -87,7 +87,7 @@ private fun ExampleContent(
 ) {
     Box(
         modifier = modifier.windowInsetsPadding(
-            WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)
+            WindowInsets.systemBars.only(WindowInsetsSides.Horizontal)
         ),
         contentAlignment = Alignment.Center
     ) {
