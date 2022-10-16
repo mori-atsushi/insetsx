@@ -27,3 +27,8 @@ actual val WindowInsets.Companion.ime: WindowInsets
     @Composable
     @NonRestartableComposable
     get() = androidIme
+
+actual val WindowInsets.Companion.safeDrawing: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = androidSafeDrawing

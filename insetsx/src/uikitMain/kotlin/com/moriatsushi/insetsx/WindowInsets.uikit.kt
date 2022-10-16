@@ -23,3 +23,8 @@ actual val WindowInsets.Companion.ime: WindowInsets
     @Composable
     @NonRestartableComposable
     get() = LocalWindowInsetsHolder.current.ime
+
+actual val WindowInsets.Companion.safeDrawing: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = LocalWindowInsetsHolder.current.safeDrawing

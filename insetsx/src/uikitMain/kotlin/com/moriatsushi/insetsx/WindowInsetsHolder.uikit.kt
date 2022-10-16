@@ -4,6 +4,7 @@ import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.union
 import kotlin.math.roundToInt
 import kotlinx.cinterop.CValue
 import kotlinx.cinterop.ObjCAction
@@ -29,6 +30,7 @@ internal class WindowInsetsHolder(
     val navigationBars = systemBars.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom)
     val statusBars = systemBars.only(WindowInsetsSides.Top)
     val ime = UIKeyboardInsets()
+    val safeDrawing = systemBars.union(ime)
 
     init {
         NSNotificationCenter.defaultCenter.addObserver(
