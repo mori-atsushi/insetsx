@@ -6,18 +6,15 @@ import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 
 @Stable
 internal class UIKeyboardInsets : WindowInsets {
-    private var height by mutableStateOf(0)
+    private val animatable = Animatable(0, Int.VectorConverter)
 
     override fun getBottom(density: Density): Int {
-        return height
+        return animatable.value
     }
 
     override fun getLeft(density: Density, layoutDirection: LayoutDirection): Int {
@@ -35,21 +32,14 @@ internal class UIKeyboardInsets : WindowInsets {
     suspend fun update(
         height: Int,
         durationMillis: Int,
-        easing: Easing
+        easing: Easing,
     ) {
-        val animatable = Animatable(this.height, Int.VectorConverter)
-        try {
-            animatable.animateTo(
-                targetValue = height,
-                animationSpec = tween(
-                    durationMillis = durationMillis,
-                    easing = easing,
-                ),
-            ) {
-                this@UIKeyboardInsets.height = value
-            }
-        } finally {
-            this@UIKeyboardInsets.height = height
-        }
+        animatable.animateTo(
+            targetValue = height,
+            animationSpec = tween(
+                durationMillis = durationMillis,
+                easing = easing
+            )
+        )
     }
 }
