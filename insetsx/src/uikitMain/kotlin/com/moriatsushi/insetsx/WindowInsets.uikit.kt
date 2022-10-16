@@ -18,3 +18,8 @@ actual val WindowInsets.Companion.systemBars: WindowInsets
     @Composable
     @NonRestartableComposable
     get() = LocalWindowInsetsHolder.current.systemBars
+
+actual val WindowInsets.Companion.ime: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = LocalWindowInsetsHolder.current.ime

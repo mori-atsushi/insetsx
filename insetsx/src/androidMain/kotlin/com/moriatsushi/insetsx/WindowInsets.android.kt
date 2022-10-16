@@ -1,6 +1,7 @@
 package com.moriatsushi.insetsx
 
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.ime as androidIme
 import androidx.compose.foundation.layout.navigationBars as androidNavigationBars
 import androidx.compose.foundation.layout.safeDrawing as androidSafeDrawing
 import androidx.compose.foundation.layout.statusBars as androidStatusBars
@@ -21,3 +22,8 @@ actual val WindowInsets.Companion.systemBars: WindowInsets
     @Composable
     @NonRestartableComposable
     get() = androidSafeDrawing
+
+actual val WindowInsets.Companion.ime: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = androidIme

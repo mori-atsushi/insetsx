@@ -13,7 +13,7 @@ import platform.UIKit.UIView
 import platform.UIKit.safeAreaInsets
 
 @Stable
-internal class UIKitWindowInsets(
+internal class UIKitSafeAreaInsets(
     private val view: UIView,
 ) : WindowInsets {
     private var values by mutableStateOf(createValues())

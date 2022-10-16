@@ -4,8 +4,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.union
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.BottomAppBar
 import androidx.compose.material.Icon
@@ -13,14 +15,20 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.moriatsushi.insetsx.ime
 import com.moriatsushi.insetsx.systemBars
 
 @Composable
@@ -68,7 +76,7 @@ private fun ExampleBottomAppBar(
             .windowInsetsPadding(
                 WindowInsets.systemBars.only(
                     WindowInsetsSides.Bottom + WindowInsetsSides.Horizontal
-                )
+                ).union(WindowInsets.ime)
             ),
         elevation = 0.dp
     ) {
@@ -85,12 +93,18 @@ private fun ExampleBottomAppBar(
 private fun ExampleContent(
     modifier: Modifier = Modifier,
 ) {
+    var text by remember { mutableStateOf("") }
     Box(
-        modifier = modifier.windowInsetsPadding(
-            WindowInsets.systemBars.only(WindowInsetsSides.Horizontal)
-        ),
+        modifier = modifier
+            .fillMaxSize()
+            .windowInsetsPadding(
+                WindowInsets.systemBars.only(WindowInsetsSides.Horizontal)
+            ),
         contentAlignment = Alignment.Center
     ) {
-        Text("Content")
+        TextField(
+            value = text,
+            onValueChange = { text = it }
+        )
     }
 }

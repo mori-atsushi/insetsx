@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import platform.UIKit.UIWindow
 import platform.UIKit.addSubview
 import platform.UIKit.removeFromSuperview
@@ -13,8 +14,9 @@ fun WindowInsetsProvider(
     window: UIWindow,
     content: @Composable () -> Unit,
 ) {
+    val scope = rememberCoroutineScope()
     val windowInsetsHolder = remember(window) {
-        WindowInsetsHolder(window.bounds).apply {
+        WindowInsetsHolder(window.bounds, scope).apply {
             window.addSubview(this)
         }
     }
