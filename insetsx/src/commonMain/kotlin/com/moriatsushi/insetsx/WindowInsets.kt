@@ -14,3 +14,6 @@ expect val WindowInsets.Companion.systemBars: WindowInsets
 
 expect val WindowInsets.Companion.ime: WindowInsets
     @Composable get
+
+expect val WindowInsets.Companion.safeDrawing: WindowInsets
+    @Composable get

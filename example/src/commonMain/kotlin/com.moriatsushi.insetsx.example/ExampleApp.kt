@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.union
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.BottomAppBar
 import androidx.compose.material.Icon
@@ -28,8 +27,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.moriatsushi.insetsx.ime
-import com.moriatsushi.insetsx.systemBars
+import com.moriatsushi.insetsx.safeDrawing
 
 @Composable
 fun ExampleApp() {
@@ -57,7 +55,7 @@ private fun ExampleTopAppBar(
         modifier = modifier
             .background(MaterialTheme.colors.primarySurface)
             .windowInsetsPadding(
-                WindowInsets.systemBars.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal)
+                WindowInsets.safeDrawing.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal)
             ),
         title = {
             Text("InsetsX")
@@ -74,9 +72,9 @@ private fun ExampleBottomAppBar(
         modifier = modifier
             .background(MaterialTheme.colors.primarySurface)
             .windowInsetsPadding(
-                WindowInsets.systemBars.only(
+                WindowInsets.safeDrawing.only(
                     WindowInsetsSides.Bottom + WindowInsetsSides.Horizontal
-                ).union(WindowInsets.ime)
+                )
             ),
         elevation = 0.dp
     ) {
@@ -98,7 +96,7 @@ private fun ExampleContent(
         modifier = modifier
             .fillMaxSize()
             .windowInsetsPadding(
-                WindowInsets.systemBars.only(WindowInsetsSides.Horizontal)
+                WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)
             ),
         contentAlignment = Alignment.Center
     ) {
