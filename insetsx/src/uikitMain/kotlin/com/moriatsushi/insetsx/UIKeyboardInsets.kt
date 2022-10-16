@@ -1,5 +1,8 @@
 package com.moriatsushi.insetsx
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.VectorConverter
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -28,7 +31,17 @@ internal class UIKeyboardInsets : WindowInsets {
         return 0
     }
 
-    fun update(height: Int) {
-        this.height = height
+    suspend fun update(height: Int, durationMills: Int) {
+        val animatable = Animatable(this.height, Int.VectorConverter)
+        try {
+            animatable.animateTo(
+                targetValue = height,
+                animationSpec = tween(durationMills),
+            ) {
+                this@UIKeyboardInsets.height = value
+            }
+        } finally {
+            this@UIKeyboardInsets.height = height
+        }
     }
 }
