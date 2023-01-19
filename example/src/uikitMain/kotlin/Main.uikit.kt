@@ -1,4 +1,4 @@
-import androidx.compose.ui.window.Application
+import androidx.compose.ui.window.ComposeUIViewController
 import com.moriatsushi.insetsx.WindowInsetsProvider
 import com.moriatsushi.insetsx.example.ExampleApp
 import kotlinx.cinterop.ObjCObjectBase
@@ -44,7 +44,7 @@ class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
         didFinishLaunchingWithOptions: Map<Any?, *>?,
     ): Boolean {
         window = UIWindow(frame = UIScreen.mainScreen.bounds)
-        window!!.rootViewController = Application("InsetsX") {
+        window!!.rootViewController = ComposeUIViewController {
             WindowInsetsProvider(
                 window = window!!
             ) {

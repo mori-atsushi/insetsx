@@ -49,7 +49,7 @@ internal class WindowInsetsHolder(
 
     @Suppress("unused")
     @ObjCAction
-    fun safeAreaInsetsDidChange() {
+    override fun safeAreaInsetsDidChange() {
         systemBars.update()
     }
 
