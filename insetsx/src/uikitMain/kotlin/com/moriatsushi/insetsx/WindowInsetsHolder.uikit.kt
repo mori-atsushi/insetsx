@@ -70,14 +70,14 @@ internal class WindowInsetsHolder(
         val durationMillis = arg.keyboardAnimationDurationMills
 
         scope.launch {
-            ime.update(0, durationMillis, FastOutLinearInEasing)
+            ime.update(0f, durationMillis, FastOutLinearInEasing)
         }
     }
 
-    private val NSNotification.keyboardHeight: Int
+    private val NSNotification.keyboardHeight: Float
         get() {
             val keyboardInfo = userInfo!!["UIKeyboardFrameEndUserInfoKey"] as NSValue
-            return keyboardInfo.CGRectValue().useContents { size.height }.roundToInt()
+            return keyboardInfo.CGRectValue().useContents { size.height }.toFloat()
         }
 
     private val NSNotification.keyboardAnimationDurationMills: Int
