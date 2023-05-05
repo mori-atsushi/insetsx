@@ -7,14 +7,18 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.unit.dp
 
 @Stable
 internal class UIKeyboardInsets : WindowInsets {
-    private val animatable = Animatable(0, Int.VectorConverter)
+    private val animatable = Animatable(0.dp, Dp.VectorConverter)
 
     override fun getBottom(density: Density): Int {
-        return animatable.value
+        return with(density) {
+            animatable.value.roundToPx()
+        }
     }
 
     override fun getLeft(density: Density, layoutDirection: LayoutDirection): Int {
@@ -30,7 +34,7 @@ internal class UIKeyboardInsets : WindowInsets {
     }
 
     suspend fun update(
-        height: Int,
+        height: Dp,
         durationMillis: Int,
         easing: Easing,
     ) {
