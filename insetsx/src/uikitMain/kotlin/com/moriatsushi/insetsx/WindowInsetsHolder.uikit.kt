@@ -5,6 +5,8 @@ import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.union
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import kotlin.math.roundToInt
 import kotlinx.cinterop.CValue
 import kotlinx.cinterop.ObjCAction
@@ -70,14 +72,14 @@ internal class WindowInsetsHolder(
         val durationMillis = arg.keyboardAnimationDurationMills
 
         scope.launch {
-            ime.update(0f, durationMillis, FastOutLinearInEasing)
+            ime.update(0.dp, durationMillis, FastOutLinearInEasing)
         }
     }
 
-    private val NSNotification.keyboardHeight: Float
+    private val NSNotification.keyboardHeight: Dp
         get() {
             val keyboardInfo = userInfo!!["UIKeyboardFrameEndUserInfoKey"] as NSValue
-            return keyboardInfo.CGRectValue().useContents { size.height }.toFloat()
+            return keyboardInfo.CGRectValue().useContents { size.height }.toFloat().dp
         }
 
     private val NSNotification.keyboardAnimationDurationMills: Int

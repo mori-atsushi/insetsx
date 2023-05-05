@@ -2,20 +2,22 @@ package com.moriatsushi.insetsx
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Easing
+import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 
 @Stable
 internal class UIKeyboardInsets : WindowInsets {
-    private val animatable = Animatable(0f)
+    private val animatable = Animatable(0.dp, Dp.VectorConverter)
 
     override fun getBottom(density: Density): Int {
         return with(density) {
-            animatable.value.dp.roundToPx()
+            animatable.value.roundToPx()
         }
     }
 
@@ -32,7 +34,7 @@ internal class UIKeyboardInsets : WindowInsets {
     }
 
     suspend fun update(
-        height: Float,
+        height: Dp,
         durationMillis: Int,
         easing: Easing,
     ) {
