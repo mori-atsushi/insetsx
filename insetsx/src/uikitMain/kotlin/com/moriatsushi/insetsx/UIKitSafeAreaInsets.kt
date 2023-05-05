@@ -53,7 +53,7 @@ internal class UIKitSafeAreaInsets(
                 bottom = bottom.toFloat().dp,
                 left = left.toFloat().dp,
                 right = right.toFloat().dp,
-                top = top.toFloat().dp,
+                top = top.toFloat().dp
             )
         }
     }
