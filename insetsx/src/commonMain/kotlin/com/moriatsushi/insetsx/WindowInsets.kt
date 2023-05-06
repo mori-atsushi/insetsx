@@ -12,8 +12,10 @@ expect val WindowInsets.Companion.statusBars: WindowInsets
 expect val WindowInsets.Companion.systemBars: WindowInsets
     @Composable get
 
+@ExperimentalSoftwareKeyboardApi
 expect val WindowInsets.Companion.ime: WindowInsets
     @Composable get
 
+@ExperimentalSoftwareKeyboardApi
 expect val WindowInsets.Companion.safeDrawing: WindowInsets
     @Composable get

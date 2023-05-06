@@ -19,11 +19,13 @@ actual val WindowInsets.Companion.systemBars: WindowInsets
     @NonRestartableComposable
     get() = WindowInsetsHolder.current().systemBars
 
+@ExperimentalSoftwareKeyboardApi
 actual val WindowInsets.Companion.ime: WindowInsets
     @Composable
     @NonRestartableComposable
     get() = WindowInsetsHolder.current().ime
 
+@ExperimentalSoftwareKeyboardApi
 actual val WindowInsets.Companion.safeDrawing: WindowInsets
     @Composable
     @NonRestartableComposable
