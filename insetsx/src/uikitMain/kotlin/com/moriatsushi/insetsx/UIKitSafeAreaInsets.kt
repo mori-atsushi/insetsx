@@ -17,7 +17,7 @@ import platform.UIKit.UIView
 internal class UIKitSafeAreaInsets(
     private val view: UIView,
 ) : WindowInsets {
-    private var values by mutableStateOf(createValues())
+    private var values by mutableStateOf(InsetsValues())
 
     override fun getBottom(density: Density): Int {
         return with(density) {
@@ -44,25 +44,21 @@ internal class UIKitSafeAreaInsets(
     }
 
     fun update() {
-        values = createValues()
-    }
-
-    private fun createValues(): InsetsValues {
-        return view.safeAreaInsets.useContents {
+        values = view.window?.safeAreaInsets?.useContents {
             InsetsValues(
                 bottom = bottom.toFloat().dp,
                 left = left.toFloat().dp,
                 right = right.toFloat().dp,
                 top = top.toFloat().dp
             )
-        }
+        } ?: InsetsValues()
     }
 
     @Immutable
     private data class InsetsValues(
-        val bottom: Dp,
-        val left: Dp,
-        val right: Dp,
-        val top: Dp,
+        val bottom: Dp = 0.dp,
+        val left: Dp = 0.dp,
+        val right: Dp = 0.dp,
+        val top: Dp = 0.dp,
     )
 }
