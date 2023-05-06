@@ -8,21 +8,12 @@ plugins {
 
 kotlin {
     android()
-    iosX64("uikitX64") {
-        binaries {
-            executable {
-                entryPoint = "main"
-                freeCompilerArgs += listOf(
-                    "-linker-option", "-framework", "-linker-option", "Metal",
-                    "-linker-option", "-framework", "-linker-option", "CoreText",
-                    "-linker-option", "-framework", "-linker-option", "CoreGraphics",
-                    "-Xverify-compiler=false", // Workaround for https://youtrack.jetbrains.com/issue/KT-53561
-                )
-            }
-        }
-    }
-    iosArm64("uikitArm64") {
-        binaries {
+    listOf(
+        iosX64("uikitX64"),
+        iosArm64("uikitArm64"),
+        iosSimulatorArm64("uikitSimArm64")
+    ).forEach {
+        it.binaries {
             executable {
                 entryPoint = "main"
                 freeCompilerArgs += listOf(
@@ -63,6 +54,9 @@ kotlin {
             dependsOn(uikitMain)
         }
         val uikitArm64Main by getting {
+            dependsOn(uikitMain)
+        }
+        val uikitSimArm64Main by getting {
             dependsOn(uikitMain)
         }
     }

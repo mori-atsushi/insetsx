@@ -13,6 +13,7 @@ kotlin {
     listOf(
         iosX64("uikitX64"),
         iosArm64("uikitArm64"),
+        iosSimulatorArm64("uikitSimArm64")
     ).forEach {
         it.binaries.framework {
             baseName = "insetsx"
@@ -43,6 +44,9 @@ kotlin {
             dependsOn(uikitMain)
         }
         val uikitArm64Main by getting {
+            dependsOn(uikitMain)
+        }
+        val uikitSimArm64Main by getting {
             dependsOn(uikitMain)
         }
         val uikitTest by creating {
