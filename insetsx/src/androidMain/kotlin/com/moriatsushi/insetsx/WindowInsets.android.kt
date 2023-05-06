@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.ime as androidIme
 import androidx.compose.foundation.layout.navigationBars as androidNavigationBars
 import androidx.compose.foundation.layout.safeDrawing as androidSafeDrawing
 import androidx.compose.foundation.layout.statusBars as androidStatusBars
+import androidx.compose.foundation.layout.systemBars as androidSystemBars
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 
@@ -21,7 +22,7 @@ actual val WindowInsets.Companion.statusBars: WindowInsets
 actual val WindowInsets.Companion.systemBars: WindowInsets
     @Composable
     @NonRestartableComposable
-    get() = androidSafeDrawing
+    get() = androidSystemBars
 
 actual val WindowInsets.Companion.ime: WindowInsets
     @Composable
