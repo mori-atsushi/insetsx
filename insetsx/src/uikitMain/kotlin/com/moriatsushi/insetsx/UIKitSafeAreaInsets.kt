@@ -14,9 +14,7 @@ import kotlinx.cinterop.useContents
 import platform.UIKit.UIView
 
 @Stable
-internal class UIKitSafeAreaInsets(
-    private val view: UIView,
-) : WindowInsets {
+internal class UIKitSafeAreaInsets : WindowInsets {
     private var values by mutableStateOf(InsetsValues())
 
     override fun getBottom(density: Density): Int {
@@ -43,7 +41,7 @@ internal class UIKitSafeAreaInsets(
         }
     }
 
-    fun update() {
+    fun update(view: UIView) {
         values = view.window?.safeAreaInsets?.useContents {
             InsetsValues(
                 bottom = bottom.toFloat().dp,

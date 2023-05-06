@@ -11,14 +11,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.interop.LocalUIViewController
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import kotlinx.cinterop.CValue
+import kotlin.coroutines.CoroutineContext
 import kotlinx.cinterop.ObjCAction
 import kotlinx.cinterop.useContents
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import platform.CoreGraphics.CGRect
 import platform.CoreGraphics.CGRectMake
 import platform.Foundation.NSNotification
 import platform.Foundation.NSNotificationCenter
@@ -30,12 +28,12 @@ import platform.UIKit.UIKeyboardWillHideNotification
 import platform.UIKit.UIKeyboardWillShowNotification
 import platform.UIKit.UIView
 import platform.UIKit.UIViewController
-import kotlin.coroutines.CoroutineContext
+import platform.darwin.NSObject
 
 internal class WindowInsetsHolder(
-    private val coroutineContext: CoroutineContext
-) : UIView(CGRectMake(.0, .0, .0, .0)) {
-    val systemBars = UIKitSafeAreaInsets(this)
+    private val coroutineContext: CoroutineContext,
+) {
+    val systemBars = UIKitSafeAreaInsets()
     val navigationBars = systemBars.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom)
     val statusBars = systemBars.only(WindowInsetsSides.Top)
     val ime = UIKeyboardInsets()
@@ -51,19 +49,50 @@ internal class WindowInsetsHolder(
      */
     private var accessCount = 0
 
+    private val keyboardVisibilityListener = object : NSObject() {
+        @Suppress("unused")
+        @ObjCAction
+        fun keyboardWillShow(arg: NSNotification) {
+            val height = arg.keyboardHeight
+            val durationMillis = arg.keyboardAnimationDurationMills
+
+            coroutineScope.launch {
+                ime.update(height, durationMillis, LinearOutSlowInEasing)
+            }
+        }
+
+        @Suppress("unused")
+        @ObjCAction
+        fun keyboardWillHide(arg: NSNotification) {
+            val durationMillis = arg.keyboardAnimationDurationMills
+
+            coroutineScope.launch {
+                ime.update(0.dp, durationMillis, FastOutLinearInEasing)
+            }
+        }
+    }
+
+    private val insetsListenerView = object : UIView(CGRectMake(.0, .0, .0, .0)) {
+        @Suppress("unused")
+        @ObjCAction
+        override fun safeAreaInsetsDidChange() {
+            systemBars.update(this)
+        }
+    }
+
     fun incrementAccessors(viewController: UIViewController) {
         accessCount++
         if (accessCount == 1) {
-            viewController.view.insertSubview(this, 0)
-            systemBars.update()
+            viewController.view.insertSubview(insetsListenerView, 0)
+            systemBars.update(insetsListenerView)
             NSNotificationCenter.defaultCenter.addObserver(
-                observer = this,
+                observer = keyboardVisibilityListener,
                 selector = NSSelectorFromString("keyboardWillShow:"),
                 name = UIKeyboardWillShowNotification,
                 `object` = null
             )
             NSNotificationCenter.defaultCenter.addObserver(
-                observer = this,
+                observer = keyboardVisibilityListener,
                 selector = NSSelectorFromString("keyboardWillHide:"),
                 name = UIKeyboardWillHideNotification,
                 `object` = null
@@ -74,47 +103,20 @@ internal class WindowInsetsHolder(
     fun decrementAccessors(): Boolean {
         accessCount--
         if (accessCount == 0) {
-            this.removeFromSuperview()
+            insetsListenerView.removeFromSuperview()
             coroutineJob.cancel()
             NSNotificationCenter.defaultCenter.removeObserver(
-                observer = this,
+                observer = keyboardVisibilityListener,
                 name = UIKeyboardWillShowNotification,
                 `object` = null
             )
             NSNotificationCenter.defaultCenter.removeObserver(
-                observer = this,
+                observer = keyboardVisibilityListener,
                 name = UIKeyboardWillHideNotification,
                 `object` = null
             )
         }
         return accessCount == 0
-    }
-
-    @Suppress("unused")
-    @ObjCAction
-    override fun safeAreaInsetsDidChange() {
-        systemBars.update()
-    }
-
-    @Suppress("unused")
-    @ObjCAction
-    fun keyboardWillShow(arg: NSNotification) {
-        val height = arg.keyboardHeight
-        val durationMillis = arg.keyboardAnimationDurationMills
-
-        coroutineScope.launch {
-            ime.update(height, durationMillis, LinearOutSlowInEasing)
-        }
-    }
-
-    @Suppress("unused")
-    @ObjCAction
-    fun keyboardWillHide(arg: NSNotification) {
-        val durationMillis = arg.keyboardAnimationDurationMills
-
-        coroutineScope.launch {
-            ime.update(0.dp, durationMillis, FastOutLinearInEasing)
-        }
     }
 
     private val NSNotification.keyboardHeight: Dp
@@ -130,6 +132,8 @@ internal class WindowInsetsHolder(
         }
 
     companion object {
+        private val viewControllerMap = mutableMapOf<UIViewController, WindowInsetsHolder>()
+
         @Composable
         fun current(): WindowInsetsHolder {
             val viewController = LocalUIViewController.current
@@ -150,19 +154,11 @@ internal class WindowInsetsHolder(
 
         private fun getOrCreateFor(
             viewController: UIViewController,
-            coroutineContext: CoroutineContext
+            coroutineContext: CoroutineContext,
         ): WindowInsetsHolder {
             return viewControllerMap.getOrPut(viewController) {
-                createFor(coroutineContext)
+                WindowInsetsHolder(coroutineContext)
             }
-        }
-
-        private fun createFor(
-            coroutineContext: CoroutineContext
-        ): WindowInsetsHolder {
-            return WindowInsetsHolder(coroutineContext)
         }
     }
 }
-
-private val viewControllerMap = mutableMapOf<UIViewController, WindowInsetsHolder>()
