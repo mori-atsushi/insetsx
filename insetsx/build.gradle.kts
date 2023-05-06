@@ -54,4 +54,7 @@ android {
     defaultConfig {
         minSdk = 21
     }
+    buildFeatures {
+        buildConfig = false
+    }
 }
