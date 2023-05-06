@@ -6,7 +6,9 @@ plugins {
 }
 
 kotlin {
-    android()
+    android {
+        publishLibraryVariants("release")
+    }
 
     listOf(
         iosX64("uikitX64"),
