@@ -1,5 +1,4 @@
 import androidx.compose.ui.window.ComposeUIViewController
-import com.moriatsushi.insetsx.WindowInsetsProvider
 import com.moriatsushi.insetsx.example.ExampleApp
 import kotlinx.cinterop.ObjCObjectBase
 import kotlinx.cinterop.autoreleasepool
@@ -43,15 +42,12 @@ class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
         application: UIApplication,
         didFinishLaunchingWithOptions: Map<Any?, *>?,
     ): Boolean {
-        window = UIWindow(frame = UIScreen.mainScreen.bounds)
-        window!!.rootViewController = ComposeUIViewController {
-            WindowInsetsProvider(
-                window = window!!
-            ) {
+        window = UIWindow(frame = UIScreen.mainScreen.bounds).apply {
+            rootViewController = ComposeUIViewController {
                 ExampleApp()
             }
+            makeKeyAndVisible()
         }
-        window!!.makeKeyAndVisible()
         return true
     }
 }
