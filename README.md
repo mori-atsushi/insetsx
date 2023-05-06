@@ -21,7 +21,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("com.moriatsushi.insetsx:insetsx:0.1.0-alpha01")
+                implementation("com.moriatsushi.insetsx:insetsx:0.1.0-alpha03")
             }
         }
     }
