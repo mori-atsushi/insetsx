@@ -24,6 +24,7 @@ dependencyResolutionManagement {
             version("jetbrains-compose", "1.4.0")
             version("spotless", "6.13.0")
             version("ktlint", "0.48.1")
+            version("publish", "0.25.2")
 
             library("kotlinx-atomicfu", "org.jetbrains.kotlinx", "atomicfu")
                 .versionRef("kotlinx-atomicfu")
@@ -40,6 +41,8 @@ dependencyResolutionManagement {
                 .versionRef("jetbrains-compose")
             plugin("spotless", "com.diffplug.spotless")
                 .versionRef("spotless")
+            plugin("publish", "com.vanniktech.maven.publish")
+                .versionRef("publish")
         }
     }
 }
