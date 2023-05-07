@@ -18,6 +18,13 @@ kotlin {
         it.binaries.framework {
             baseName = "insetsx"
         }
+        it.compilations.getByName("main") {
+            cinterops {
+                //  Workaround to override uikit classes
+                val uikit by cinterops.creating {
+                }
+            }
+        }
     }
 
     sourceSets {
