@@ -35,6 +35,11 @@ internal class WindowInsetsUIViewController : UIViewController {
     override fun preferredStatusBarStyle(): UIStatusBarStyle =
         _preferredStatusBarStyle
 
+    private var _prefersStatusBarHidden: Boolean = false
+
+    override fun prefersStatusBarHidden(): Boolean =
+        _prefersStatusBarHidden
+
     private val windowInsetsController = object : WindowInsetsController {
         override fun setStatusBarContentColor(dark: Boolean) {
             _preferredStatusBarStyle = if (dark) 3L else 1L
@@ -43,6 +48,11 @@ internal class WindowInsetsUIViewController : UIViewController {
 
         override fun setNavigationBarsContentColor(dark: Boolean) {
             // no op
+        }
+
+        override fun setIsStatusBarsVisible(isVisible: Boolean) {
+            _prefersStatusBarHidden = !isVisible
+            setNeedsStatusBarAppearanceUpdate()
         }
     }
 
