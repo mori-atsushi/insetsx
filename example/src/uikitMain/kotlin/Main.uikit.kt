@@ -1,4 +1,4 @@
-import androidx.compose.ui.window.ComposeUIViewController
+import com.moriatsushi.insetsx.WindowInsetsUIViewController
 import com.moriatsushi.insetsx.example.ExampleApp
 import kotlinx.cinterop.ObjCObjectBase
 import kotlinx.cinterop.autoreleasepool
@@ -43,7 +43,7 @@ class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
         didFinishLaunchingWithOptions: Map<Any?, *>?,
     ): Boolean {
         window = UIWindow(frame = UIScreen.mainScreen.bounds).apply {
-            rootViewController = ComposeUIViewController {
+            rootViewController = WindowInsetsUIViewController {
                 ExampleApp()
             }
             makeKeyAndVisible()
