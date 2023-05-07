@@ -17,8 +17,11 @@ private class AndroidWindowInsetsController(
     }
 }
 
+/**
+ * Find and return a [WindowInsetsController].
+ */
 @Composable
-internal actual fun rememberWindowInsetsController(): WindowInsetsController? {
+actual fun rememberWindowInsetsController(): WindowInsetsController? {
     val systemUIController = rememberSystemUiController()
     return remember {
         AndroidWindowInsetsController(systemUIController)

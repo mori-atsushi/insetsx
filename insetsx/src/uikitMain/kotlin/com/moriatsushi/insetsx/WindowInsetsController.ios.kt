@@ -7,7 +7,10 @@ internal val LocalWindowInsetsController = staticCompositionLocalOf<WindowInsets
     null
 }
 
+/**
+ * Find and return a [WindowInsetsController].
+ */
 @Composable
-internal actual fun rememberWindowInsetsController(): WindowInsetsController? {
+actual fun rememberWindowInsetsController(): WindowInsetsController? {
     return LocalWindowInsetsController.current
 }
