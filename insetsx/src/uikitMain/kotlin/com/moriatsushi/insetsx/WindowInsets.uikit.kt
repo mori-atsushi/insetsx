@@ -19,6 +19,15 @@ actual val WindowInsets.Companion.systemBars: WindowInsets
     @NonRestartableComposable
     get() = WindowInsetsHolder.current().systemBars
 
+/**
+ * The insets representing the safe area.
+ */
+@ExperimentalSoftwareKeyboardApi
+actual val WindowInsets.Companion.safeArea: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = WindowInsetsHolder.current().safeArea
+
 @ExperimentalSoftwareKeyboardApi
 actual val WindowInsets.Companion.ime: WindowInsets
     @Composable

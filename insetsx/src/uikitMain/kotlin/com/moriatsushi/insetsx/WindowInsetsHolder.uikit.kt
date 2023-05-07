@@ -33,7 +33,7 @@ import platform.darwin.NSObject
 internal class WindowInsetsHolder(
     private val coroutineContext: CoroutineContext,
 ) {
-    private val safeArea = UIKitSafeAreaInsets()
+    val safeArea = UIKitSafeAreaInsets()
     val navigationBars = safeArea.only(WindowInsetsSides.Bottom)
     val statusBars = safeArea.only(WindowInsetsSides.Top)
     val systemBars = navigationBars.union(statusBars)

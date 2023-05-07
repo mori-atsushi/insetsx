@@ -12,6 +12,16 @@ expect val WindowInsets.Companion.statusBars: WindowInsets
 expect val WindowInsets.Companion.systemBars: WindowInsets
     @Composable get
 
+/**
+ * The insets that include unsafe areas such as system bars and display cutouts,
+ * but not including ime.
+ *
+ * * In Android: system bars + display cutouts (not including IME)
+ * * In iOS: safe area (not including IME)
+ */
+expect val WindowInsets.Companion.safeArea: WindowInsets
+    @Composable get
+
 @ExperimentalSoftwareKeyboardApi
 expect val WindowInsets.Companion.ime: WindowInsets
     @Composable get

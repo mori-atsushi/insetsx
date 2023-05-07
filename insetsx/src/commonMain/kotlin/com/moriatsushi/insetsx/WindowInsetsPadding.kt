@@ -11,6 +11,13 @@ fun Modifier.safeDrawingPadding() = Modifier.windowInsetsPadding {
     WindowInsets.safeDrawing
 }
 
+/**
+ * Adds padding to accommodate the [safe area][WindowInsets.Companion.safeArea] insets.
+ */
+fun Modifier.safeAreaPadding() = Modifier.windowInsetsPadding {
+    WindowInsets.safeArea
+}
+
 fun Modifier.systemBarsPadding() = Modifier.windowInsetsPadding {
     WindowInsets.systemBars
 }
