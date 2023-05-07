@@ -3,6 +3,7 @@ package com.moriatsushi.insetsx
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.window.ComposeUIViewController
+import com.moriatsushi.insetsx.cinterop.UIViewControllerWithOverridesProtocol
 import platform.Foundation.NSCoder
 import platform.UIKit.UIStatusBarStyle
 import platform.UIKit.UIView
@@ -11,6 +12,7 @@ import platform.UIKit.UIViewAutoresizingFlexibleWidth
 import platform.UIKit.UIViewController
 import platform.UIKit.addChildViewController
 import platform.UIKit.didMoveToParentViewController
+import platform.UIKit.setNeedsUpdateOfHomeIndicatorAutoHidden
 
 /**
  * Create a [UIViewController] with window insets support
@@ -21,7 +23,9 @@ fun WindowInsetsUIViewController(content: @Composable () -> Unit): UIViewControl
         setContent(content)
     }
 
-internal class WindowInsetsUIViewController : UIViewController {
+internal class WindowInsetsUIViewController :
+    UIViewController,
+    UIViewControllerWithOverridesProtocol {
     @OverrideInit
     constructor() : super(nibName = null, bundle = null)
 
@@ -31,14 +35,16 @@ internal class WindowInsetsUIViewController : UIViewController {
     private lateinit var content: @Composable () -> Unit
 
     private var _preferredStatusBarStyle: UIStatusBarStyle = 0L
-
     override fun preferredStatusBarStyle(): UIStatusBarStyle =
         _preferredStatusBarStyle
 
     private var _prefersStatusBarHidden: Boolean = false
-
     override fun prefersStatusBarHidden(): Boolean =
         _prefersStatusBarHidden
+
+    private var _prefersHomeIndicatorAutoHidden: Boolean = false
+    override fun prefersHomeIndicatorAutoHidden(): Boolean =
+        _prefersHomeIndicatorAutoHidden
 
     private val windowInsetsController = object : WindowInsetsController {
         override fun setStatusBarContentColor(dark: Boolean) {
@@ -53,6 +59,11 @@ internal class WindowInsetsUIViewController : UIViewController {
         override fun setIsStatusBarsVisible(isVisible: Boolean) {
             _prefersStatusBarHidden = !isVisible
             setNeedsStatusBarAppearanceUpdate()
+        }
+
+        override fun setIsNavigationBarsVisible(isVisible: Boolean) {
+            _prefersHomeIndicatorAutoHidden = !isVisible
+            setNeedsUpdateOfHomeIndicatorAutoHidden()
         }
     }
 

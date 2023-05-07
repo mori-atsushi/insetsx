@@ -19,6 +19,10 @@ private class AndroidWindowInsetsController(
     override fun setIsStatusBarsVisible(isVisible: Boolean) {
         systemUiController.isStatusBarVisible = isVisible
     }
+
+    override fun setIsNavigationBarsVisible(isVisible: Boolean) {
+        systemUiController.isNavigationBarVisible = isVisible
+    }
 }
 
 /**
