@@ -3,12 +3,30 @@ package com.moriatsushi.insetsx
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.runtime.Composable
 
+/**
+ * The insets representing navigation bars.
+ *
+ * * In Android: navigation bars
+ * * In iOS: bottom of safe area (home indicator)
+ */
 expect val WindowInsets.Companion.navigationBars: WindowInsets
     @Composable get
 
+/**
+ * The insets representing status bars.
+ *
+ * * In Android: status bars
+ * * In iOS: top of safe area (status bar)
+ */
 expect val WindowInsets.Companion.statusBars: WindowInsets
     @Composable get
 
+/**
+ * The insets representing system bars, but not including ime.
+ *
+ * * In Android: navigation bars + status bars + caption bars
+ * * In iOS: top and bottom of safe area (home indicator + status bar)
+ */
 expect val WindowInsets.Companion.systemBars: WindowInsets
     @Composable get
 
@@ -22,10 +40,22 @@ expect val WindowInsets.Companion.systemBars: WindowInsets
 expect val WindowInsets.Companion.safeArea: WindowInsets
     @Composable get
 
+/**
+ * The insets representing the area of the software keyboard.
+ *
+ * * In Android: IME
+ * * In iOS: IME
+ */
 @ExperimentalSoftwareKeyboardApi
 expect val WindowInsets.Companion.ime: WindowInsets
     @Composable get
 
+/**
+ * The insets that include areas where content may be covered by other drawn content.
+ *
+ * * In Android: system bars + display cutouts + IME
+ * * In iOS: safe area + IME
+ */
 @ExperimentalSoftwareKeyboardApi
 expect val WindowInsets.Companion.safeDrawing: WindowInsets
     @Composable get
