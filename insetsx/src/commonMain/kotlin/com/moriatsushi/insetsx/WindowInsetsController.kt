@@ -31,6 +31,11 @@ interface WindowInsetsController {
      * Change the visibility of the status bars.
      */
     fun setIsStatusBarsVisible(isVisible: Boolean)
+
+    /**
+     * Change the visibility of the navigation bars.
+     */
+    fun setIsNavigationBarsVisible(isVisible: Boolean)
 }
 
 /**
