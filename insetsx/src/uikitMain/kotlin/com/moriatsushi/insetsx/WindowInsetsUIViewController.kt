@@ -41,6 +41,10 @@ internal class WindowInsetsUIViewController : UIViewController {
             _preferredStatusBarStyle = if (dark) 3L else 1L
             setNeedsStatusBarAppearanceUpdate()
         }
+
+        override fun setNavigationBarsContentColor(dark: Boolean) {
+            // no op
+        }
     }
 
     override fun loadView() {

@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 
 internal interface WindowInsetsController {
     fun setStatusBarContentColor(dark: Boolean)
+    fun setNavigationBarsContentColor(dark: Boolean)
 }
 
 @Composable

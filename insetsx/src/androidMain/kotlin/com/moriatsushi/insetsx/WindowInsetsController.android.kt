@@ -11,6 +11,10 @@ private class AndroidWindowInsetsController(
     override fun setStatusBarContentColor(dark: Boolean) {
         systemUiController.statusBarDarkContentEnabled = dark
     }
+
+    override fun setNavigationBarsContentColor(dark: Boolean) {
+        systemUiController.navigationBarDarkContentEnabled = dark
+    }
 }
 
 @Composable

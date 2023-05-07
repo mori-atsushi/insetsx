@@ -19,3 +19,20 @@ fun StatusBarsContentColor(dark: Boolean) {
         windowInsetsController?.setStatusBarContentColor(dark)
     }
 }
+
+/**
+ * The navigation bars icons will change to a dark color if [dark] is true.
+ * This is appropriate when the background is light.
+ *
+ * In Android: This setting is ignored on API <26 or on the gesture
+ * navigation mode.
+ *
+ * In iOS: This setting is ignored
+ */
+@Composable
+fun NavigationBarsContentColor(dark: Boolean) {
+    val windowInsetsController = rememberWindowInsetsController()
+    LaunchedEffect(dark) {
+        windowInsetsController?.setNavigationBarsContentColor(dark)
+    }
+}

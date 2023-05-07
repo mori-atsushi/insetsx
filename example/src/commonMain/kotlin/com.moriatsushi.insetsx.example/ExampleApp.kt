@@ -27,12 +27,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.moriatsushi.insetsx.NavigationBarsContentColor
 import com.moriatsushi.insetsx.StatusBarsContentColor
 import com.moriatsushi.insetsx.safeDrawing
 
 @Composable
 fun ExampleApp() {
     StatusBarsContentColor(dark = false)
+    NavigationBarsContentColor(dark = false)
 
     MaterialTheme {
         Scaffold(
