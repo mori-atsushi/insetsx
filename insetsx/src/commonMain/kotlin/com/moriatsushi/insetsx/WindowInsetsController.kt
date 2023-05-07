@@ -26,6 +26,11 @@ interface WindowInsetsController {
      * * In iOS: This setting is ignored.
      */
     fun setNavigationBarsContentColor(dark: Boolean)
+
+    /**
+     * Change the visibility of the status bars.
+     */
+    fun setIsStatusBarsVisible(isVisible: Boolean)
 }
 
 /**
