@@ -45,6 +45,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(libs.accompanist.systemuicontroller)
+                implementation(libs.androidx.core)
             }
         }
         val androidUnitTest by getting
