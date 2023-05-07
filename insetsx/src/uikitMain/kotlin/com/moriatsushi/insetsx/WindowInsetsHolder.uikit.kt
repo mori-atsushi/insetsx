@@ -33,11 +33,12 @@ import platform.darwin.NSObject
 internal class WindowInsetsHolder(
     private val coroutineContext: CoroutineContext,
 ) {
-    val systemBars = UIKitSafeAreaInsets()
-    val navigationBars = systemBars.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom)
-    val statusBars = systemBars.only(WindowInsetsSides.Top)
+    val safeArea = UIKitSafeAreaInsets()
+    val navigationBars = safeArea.only(WindowInsetsSides.Bottom)
+    val statusBars = safeArea.only(WindowInsetsSides.Top)
+    val systemBars = navigationBars.union(statusBars)
     val ime = UIKeyboardInsets()
-    val safeDrawing = systemBars.union(ime)
+    val safeDrawing = safeArea.union(ime)
 
     private val coroutineJob = Job()
     private val coroutineScope = CoroutineScope(coroutineContext + Job())
@@ -76,7 +77,7 @@ internal class WindowInsetsHolder(
         @Suppress("unused")
         @ObjCAction
         override fun safeAreaInsetsDidChange() {
-            systemBars.update(this)
+            safeArea.update(this)
         }
     }
 
@@ -84,7 +85,7 @@ internal class WindowInsetsHolder(
         accessCount++
         if (accessCount == 1) {
             viewController.view.insertSubview(insetsListenerView, 0)
-            systemBars.update(insetsListenerView)
+            safeArea.update(insetsListenerView)
             NSNotificationCenter.defaultCenter.addObserver(
                 observer = keyboardVisibilityListener,
                 selector = NSSelectorFromString("keyboardWillShow:"),
