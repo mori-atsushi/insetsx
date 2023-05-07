@@ -35,7 +35,11 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.accompanist.systemuicontroller)
+            }
+        }
         val androidUnitTest by getting
         val uikitMain by creating {
             dependsOn(commonMain)

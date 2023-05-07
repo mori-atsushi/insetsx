@@ -1,9 +1,11 @@
 package com.moriatsushi.insetsx
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.window.ComposeUIViewController
 import kotlinx.cinterop.useContents
 import platform.Foundation.NSCoder
+import platform.UIKit.UIStatusBarStyle
 import platform.UIKit.UIView
 import platform.UIKit.UIViewAutoresizingFlexibleHeight
 import platform.UIKit.UIViewAutoresizingFlexibleWidth
@@ -20,7 +22,7 @@ fun WindowInsetsUIViewController(content: @Composable () -> Unit): UIViewControl
         setContent(content)
     }
 
-private class WindowInsetsUIViewController : UIViewController {
+internal class WindowInsetsUIViewController : UIViewController {
     @OverrideInit
     constructor() : super(nibName = null, bundle = null)
 
@@ -29,11 +31,28 @@ private class WindowInsetsUIViewController : UIViewController {
 
     private lateinit var content: @Composable () -> Unit
 
+    private var _preferredStatusBarStyle: UIStatusBarStyle = 0L
+
+    override fun preferredStatusBarStyle(): UIStatusBarStyle =
+        _preferredStatusBarStyle
+
+    private val windowInsetsController = object : WindowInsetsController {
+        override fun setStatusBarContentColor(dark: Boolean) {
+            _preferredStatusBarStyle = if (dark) 3L else 1L
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+
     override fun loadView() {
         super.loadView()
 
         val rootView = UIView()
-        val composeViewController = ComposeUIViewController(content)
+        val composeViewController = ComposeUIViewController {
+            CompositionLocalProvider(
+                LocalWindowInsetsController provides windowInsetsController,
+                content = content
+            )
+        }
         addChildViewController(composeViewController)
         rootView.addSubview(composeViewController.view)
         rootView.setAutoresizesSubviews(true)

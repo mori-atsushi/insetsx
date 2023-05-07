@@ -22,6 +22,7 @@ dependencyResolutionManagement {
             version("androidx-appcompat", "1.6.0")
             version("androidx-activity", "1.6.1")
             version("jetbrains-compose", "1.4.0")
+            version("accompanist", "0.30.1")
             version("spotless", "6.13.0")
             version("ktlint", "0.48.1")
             version("publish", "0.25.2")
@@ -32,6 +33,8 @@ dependencyResolutionManagement {
                 .versionRef("androidx-appcompat")
             library("androidx-activity-compose", "androidx.activity", "activity-compose")
                 .versionRef("androidx-activity")
+            library("accompanist-systemuicontroller", "com.google.accompanist", "accompanist-systemuicontroller")
+                .versionRef("accompanist")
 
             plugin("android-application", "com.android.application")
                 .versionRef("agp")
