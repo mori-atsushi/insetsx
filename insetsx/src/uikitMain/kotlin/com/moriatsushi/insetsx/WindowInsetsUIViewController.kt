@@ -3,7 +3,6 @@ package com.moriatsushi.insetsx
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.window.ComposeUIViewController
-import kotlinx.cinterop.useContents
 import platform.Foundation.NSCoder
 import platform.UIKit.UIStatusBarStyle
 import platform.UIKit.UIView

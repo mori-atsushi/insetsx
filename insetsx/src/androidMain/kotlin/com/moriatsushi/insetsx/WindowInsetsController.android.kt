@@ -6,7 +6,7 @@ import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private class AndroidWindowInsetsController(
-    private val systemUiController: SystemUiController
+    private val systemUiController: SystemUiController,
 ) : WindowInsetsController {
     override fun setStatusBarContentColor(dark: Boolean) {
         systemUiController.statusBarDarkContentEnabled = dark
