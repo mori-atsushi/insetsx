@@ -7,4 +7,5 @@ language = Objective-C
 
 @protocol UIViewControllerWithOverrides
 - (bool) prefersHomeIndicatorAutoHidden;
+- (UIRectEdge) preferredScreenEdgesDeferringSystemGestures;
 @end

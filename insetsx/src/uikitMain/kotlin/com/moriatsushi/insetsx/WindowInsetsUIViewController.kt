@@ -5,6 +5,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.window.ComposeUIViewController
 import com.moriatsushi.insetsx.cinterop.UIViewControllerWithOverridesProtocol
 import platform.Foundation.NSCoder
+import platform.UIKit.UIRectEdge
 import platform.UIKit.UIStatusBarStyle
 import platform.UIKit.UIView
 import platform.UIKit.UIViewAutoresizingFlexibleHeight
@@ -13,6 +14,7 @@ import platform.UIKit.UIViewController
 import platform.UIKit.addChildViewController
 import platform.UIKit.didMoveToParentViewController
 import platform.UIKit.setNeedsUpdateOfHomeIndicatorAutoHidden
+import platform.UIKit.setNeedsUpdateOfScreenEdgesDeferringSystemGestures
 
 /**
  * Create a [UIViewController] with window insets support
@@ -46,7 +48,14 @@ internal class WindowInsetsUIViewController :
     override fun prefersHomeIndicatorAutoHidden(): Boolean =
         _prefersHomeIndicatorAutoHidden
 
+    private var _preferredScreenEdgesDeferringSystemGestures: UIRectEdge = UIRectEdgeValue.None
+    override fun preferredScreenEdgesDeferringSystemGestures(): UIRectEdge =
+        _preferredScreenEdgesDeferringSystemGestures
+
     private val windowInsetsController = object : WindowInsetsController {
+        private var preferredScreenEdgesDeferringSystemGesturesWhenHidden: UIRectEdge =
+            UIRectEdgeValue.None
+
         override fun setStatusBarContentColor(dark: Boolean) {
             _preferredStatusBarStyle = if (dark) 3L else 1L
             setNeedsStatusBarAppearanceUpdate()
@@ -59,11 +68,29 @@ internal class WindowInsetsUIViewController :
         override fun setIsStatusBarsVisible(isVisible: Boolean) {
             _prefersStatusBarHidden = !isVisible
             setNeedsStatusBarAppearanceUpdate()
+            applyScreenEdgesDeferringSystemGestures()
         }
 
         override fun setIsNavigationBarsVisible(isVisible: Boolean) {
             _prefersHomeIndicatorAutoHidden = !isVisible
             setNeedsUpdateOfHomeIndicatorAutoHidden()
+            applyScreenEdgesDeferringSystemGestures()
+        }
+
+        override fun setSystemBarsBehavior(behavior: SystemBarsBehavior) {
+            preferredScreenEdgesDeferringSystemGesturesWhenHidden =
+                behavior.preferredScreenEdgesDeferringSystemGesturesWhenHidden
+            applyScreenEdgesDeferringSystemGestures()
+        }
+
+        private fun applyScreenEdgesDeferringSystemGestures() {
+            _preferredScreenEdgesDeferringSystemGestures =
+                if (_prefersHomeIndicatorAutoHidden || _prefersStatusBarHidden) {
+                    preferredScreenEdgesDeferringSystemGesturesWhenHidden
+                } else {
+                    UIRectEdgeValue.None
+                }
+            setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
         }
     }
 

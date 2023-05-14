@@ -36,6 +36,11 @@ interface WindowInsetsController {
      * Change the visibility of the navigation bars.
      */
     fun setIsNavigationBarsVisible(isVisible: Boolean)
+
+    /**
+     * Change an options for behavior when system bars are hidden.
+     */
+    fun setSystemBarsBehavior(behavior: SystemBarsBehavior)
 }
 
 /**
