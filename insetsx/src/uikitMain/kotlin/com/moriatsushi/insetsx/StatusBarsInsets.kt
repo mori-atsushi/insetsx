@@ -13,7 +13,7 @@ import platform.UIKit.UIView
 
 @Stable
 internal class StatusBarsInsets(
-    private val isVisible: () -> Boolean
+    private val isVisible: () -> Boolean,
 ) : WindowInsets {
     private var value by mutableStateOf(0.dp)
 
