@@ -2,8 +2,6 @@ package com.moriatsushi.insetsx
 
 import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.LinearOutSlowInEasing
-import androidx.compose.foundation.layout.WindowInsetsSides
-import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.union
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -31,11 +29,20 @@ import platform.UIKit.UIViewController
 import platform.darwin.NSObject
 
 internal class WindowInsetsHolder(
+    private val windowInsetsController: UIKitWindowInsetsController?,
     private val coroutineContext: CoroutineContext,
 ) {
-    val safeArea = UIKitSafeAreaInsets()
-    val navigationBars = safeArea.only(WindowInsetsSides.Bottom)
-    val statusBars = safeArea.only(WindowInsetsSides.Top)
+    val safeArea = SafeAreaInsets()
+    val navigationBars = NavigationBarsInsets(
+        isVisible = {
+            windowInsetsController?.isNavigationBarVisible ?: true
+        }
+    )
+    val statusBars = StatusBarsInsets(
+        isVisible = {
+            windowInsetsController?.isStatusBarVisible ?: true
+        }
+    )
     val systemBars = navigationBars.union(statusBars)
     val ime = UIKeyboardInsets()
     val safeDrawing = safeArea.union(ime)
@@ -77,7 +84,7 @@ internal class WindowInsetsHolder(
         @Suppress("unused")
         @ObjCAction
         override fun safeAreaInsetsDidChange() {
-            safeArea.update(this)
+            updateSafeArea()
         }
     }
 
@@ -85,7 +92,7 @@ internal class WindowInsetsHolder(
         accessCount++
         if (accessCount == 1) {
             viewController.view.insertSubview(insetsListenerView, 0)
-            safeArea.update(insetsListenerView)
+            updateSafeArea()
             NSNotificationCenter.defaultCenter.addObserver(
                 observer = keyboardVisibilityListener,
                 selector = NSSelectorFromString("keyboardWillShow:"),
@@ -120,6 +127,12 @@ internal class WindowInsetsHolder(
         return accessCount == 0
     }
 
+    private fun updateSafeArea() {
+        safeArea.update(insetsListenerView)
+        navigationBars.update(insetsListenerView)
+        statusBars.update(insetsListenerView)
+    }
+
     private val NSNotification.keyboardHeight: Dp
         get() {
             val keyboardInfo = userInfo!!["UIKeyboardFrameEndUserInfoKey"] as NSValue
@@ -138,8 +151,13 @@ internal class WindowInsetsHolder(
         @Composable
         fun current(): WindowInsetsHolder {
             val viewController = LocalUIViewController.current
+            val windowInsetsController = LocalWindowInsetsController.current
             val coroutineContext = rememberCoroutineScope().coroutineContext
-            val holder = getOrCreateFor(viewController, coroutineContext)
+            val holder = getOrCreateFor(
+                viewController,
+                windowInsetsController,
+                coroutineContext
+            )
 
             DisposableEffect(holder) {
                 holder.incrementAccessors(viewController)
@@ -155,10 +173,14 @@ internal class WindowInsetsHolder(
 
         private fun getOrCreateFor(
             viewController: UIViewController,
+            windowInsetsController: UIKitWindowInsetsController?,
             coroutineContext: CoroutineContext,
         ): WindowInsetsHolder {
             return viewControllerMap.getOrPut(viewController) {
-                WindowInsetsHolder(coroutineContext)
+                WindowInsetsHolder(
+                    windowInsetsController,
+                    coroutineContext
+                )
             }
         }
     }

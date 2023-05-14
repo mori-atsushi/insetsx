@@ -14,7 +14,7 @@ import kotlinx.cinterop.useContents
 import platform.UIKit.UIView
 
 @Stable
-internal class UIKitSafeAreaInsets : WindowInsets {
+internal class SafeAreaInsets : WindowInsets {
     private var values by mutableStateOf(InsetsValues())
 
     override fun getBottom(density: Density): Int {

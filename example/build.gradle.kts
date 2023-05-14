@@ -72,6 +72,10 @@ compose {
                     //Usage: ./gradlew :example:iosDeployIPhone13Debug
                     device = IOSDevices.IPHONE_13
                 }
+                simulator("iPhone8") {
+                    //Usage: ./gradlew :example:iosDeployIPhone13Debug
+                    device = IOSDevices.IPHONE_8
+                }
                 simulator("IPad") {
                     //Usage: ./gradlew :example:iosDeployIPadDebug
                     device = IOSDevices.IPAD_MINI_6th_Gen
