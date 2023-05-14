@@ -6,6 +6,8 @@ import androidx.compose.runtime.Composable
 /**
  * The insets representing navigation bars.
  *
+ * When the navigation bars are hidden, all values are changed to 0.
+ *
  * * In Android: navigation bars
  * * In iOS: bottom of safe area (home indicator)
  */
@@ -15,6 +17,8 @@ expect val WindowInsets.Companion.navigationBars: WindowInsets
 /**
  * The insets representing status bars.
  *
+ * When the status bars are hidden, all values are changed to 0.
+ *
  * * In Android: status bars
  * * In iOS: top of safe area (status bar)
  */
@@ -22,7 +26,8 @@ expect val WindowInsets.Companion.statusBars: WindowInsets
     @Composable get
 
 /**
- * The insets representing system bars, but not including ime.
+ * The insets representing system bars ([navigationBars] + [statusBars]),
+ * but not including [ime].
  *
  * * In Android: navigation bars + status bars + caption bars
  * * In iOS: top and bottom of safe area (home indicator + status bar)
@@ -32,7 +37,7 @@ expect val WindowInsets.Companion.systemBars: WindowInsets
 
 /**
  * The insets that include unsafe areas such as system bars and display cutouts,
- * but not including ime.
+ * but not including [ime].
  *
  * * In Android: system bars + display cutouts (not including IME)
  * * In iOS: safe area (not including IME)
