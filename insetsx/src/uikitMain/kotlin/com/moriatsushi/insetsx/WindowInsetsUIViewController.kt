@@ -2,6 +2,9 @@ package com.moriatsushi.insetsx
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.window.ComposeUIViewController
 import com.moriatsushi.insetsx.cinterop.UIViewControllerWithOverridesProtocol
 import platform.Foundation.NSCoder
@@ -40,11 +43,11 @@ internal class WindowInsetsUIViewController :
     override fun preferredStatusBarStyle(): UIStatusBarStyle =
         _preferredStatusBarStyle
 
-    private var _prefersStatusBarHidden: Boolean = false
+    private var _prefersStatusBarHidden: Boolean by mutableStateOf(true)
     override fun prefersStatusBarHidden(): Boolean =
         _prefersStatusBarHidden
 
-    private var _prefersHomeIndicatorAutoHidden: Boolean = false
+    private var _prefersHomeIndicatorAutoHidden: Boolean by mutableStateOf(true)
     override fun prefersHomeIndicatorAutoHidden(): Boolean =
         _prefersHomeIndicatorAutoHidden
 
@@ -52,9 +55,15 @@ internal class WindowInsetsUIViewController :
     override fun preferredScreenEdgesDeferringSystemGestures(): UIRectEdge =
         _preferredScreenEdgesDeferringSystemGestures
 
-    private val windowInsetsController = object : WindowInsetsController {
+    private val windowInsetsController = object : UIKitWindowInsetsController {
         private var preferredScreenEdgesDeferringSystemGesturesWhenHidden: UIRectEdge =
             UIRectEdgeValue.None
+
+        override val isStatusBarVisible: Boolean
+            get() = !_prefersStatusBarHidden
+
+        override val isNavigationBarVisible: Boolean
+            get() = !_prefersHomeIndicatorAutoHidden
 
         override fun setStatusBarContentColor(dark: Boolean) {
             _preferredStatusBarStyle = if (dark) 3L else 1L

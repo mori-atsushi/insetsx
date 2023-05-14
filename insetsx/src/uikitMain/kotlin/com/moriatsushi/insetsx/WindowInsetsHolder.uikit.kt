@@ -26,6 +26,7 @@ import platform.Foundation.NSValue
 import platform.UIKit.CGRectValue
 import platform.UIKit.UIKeyboardWillHideNotification
 import platform.UIKit.UIKeyboardWillShowNotification
+import platform.UIKit.UITraitCollection
 import platform.UIKit.UIView
 import platform.UIKit.UIViewController
 import platform.darwin.NSObject

@@ -1,9 +1,16 @@
 package com.moriatsushi.insetsx
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.staticCompositionLocalOf
 
-internal val LocalWindowInsetsController = staticCompositionLocalOf<WindowInsetsController?> {
+@Stable
+internal interface UIKitWindowInsetsController : WindowInsetsController {
+    val isStatusBarVisible: Boolean
+    val isNavigationBarVisible: Boolean
+}
+
+internal val LocalWindowInsetsController = staticCompositionLocalOf<UIKitWindowInsetsController?> {
     null
 }
 
