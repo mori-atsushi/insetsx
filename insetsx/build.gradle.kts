@@ -27,6 +27,8 @@ kotlin {
         }
     }
 
+    jvm("desktop")
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -62,6 +64,9 @@ kotlin {
             dependsOn(uikitMain)
         }
         val uikitTest by creating {
+            dependsOn(commonTest)
+        }
+        val desktopMain by getting {
             dependsOn(commonMain)
         }
     }
