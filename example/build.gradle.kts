@@ -26,6 +26,8 @@ kotlin {
         }
     }
 
+    jvm("desktop")
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -59,6 +61,13 @@ kotlin {
         val uikitSimArm64Main by getting {
             dependsOn(uikitMain)
         }
+        val desktopMain by getting {
+            dependsOn(commonMain)
+
+            dependencies {
+                implementation(compose.desktop.currentOs)
+            }
+        }
     }
 }
 
@@ -87,6 +96,10 @@ compose {
                 }
             }
         }
+    }
+
+    desktop.application {
+        mainClass = "Main_desktopKt"
     }
 }
 
