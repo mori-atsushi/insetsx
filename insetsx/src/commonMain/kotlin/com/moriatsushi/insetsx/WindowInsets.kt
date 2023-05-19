@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
  *
  * * In Android: navigation bars
  * * In iOS: bottom of safe area (home indicator)
+ * * In Desktop: return 0
  */
 expect val WindowInsets.Companion.navigationBars: WindowInsets
     @Composable get
@@ -21,6 +22,7 @@ expect val WindowInsets.Companion.navigationBars: WindowInsets
  *
  * * In Android: status bars
  * * In iOS: top of safe area (status bar)
+ * * In Desktop: return 0
  */
 expect val WindowInsets.Companion.statusBars: WindowInsets
     @Composable get
@@ -31,6 +33,7 @@ expect val WindowInsets.Companion.statusBars: WindowInsets
  *
  * * In Android: navigation bars + status bars + caption bars
  * * In iOS: top and bottom of safe area (home indicator + status bar)
+ * * In Desktop: return 0
  */
 expect val WindowInsets.Companion.systemBars: WindowInsets
     @Composable get
@@ -41,6 +44,7 @@ expect val WindowInsets.Companion.systemBars: WindowInsets
  *
  * * In Android: system bars + display cutouts (not including IME)
  * * In iOS: safe area (not including IME)
+ * * In Desktop: return 0
  */
 expect val WindowInsets.Companion.safeArea: WindowInsets
     @Composable get
@@ -50,6 +54,7 @@ expect val WindowInsets.Companion.safeArea: WindowInsets
  *
  * * In Android: IME
  * * In iOS: IME
+ * * In Desktop: return 0
  */
 @ExperimentalSoftwareKeyboardApi
 expect val WindowInsets.Companion.ime: WindowInsets
@@ -60,6 +65,7 @@ expect val WindowInsets.Companion.ime: WindowInsets
  *
  * * In Android: system bars + display cutouts + IME
  * * In iOS: safe area + IME
+ * * In Desktop: return 0
  */
 @ExperimentalSoftwareKeyboardApi
 expect val WindowInsets.Companion.safeDrawing: WindowInsets

@@ -45,6 +45,9 @@ interface WindowInsetsController {
 
 /**
  * Find and return a [WindowInsetsController].
+ *
+ * In iOS, you must use `WindowInsetsUIViewController`.
+ * In Desktop, this always returns `null`.
  */
 @Composable
 expect fun rememberWindowInsetsController(): WindowInsetsController?
