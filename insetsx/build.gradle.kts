@@ -29,6 +29,10 @@ kotlin {
 
     jvm("desktop")
 
+    js(IR) {
+        browser()
+    }
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -66,8 +70,14 @@ kotlin {
         val uikitTest by creating {
             dependsOn(commonTest)
         }
-        val desktopMain by getting {
+        val noOpMain by creating {
             dependsOn(commonMain)
+        }
+        val desktopMain by getting {
+            dependsOn(noOpMain)
+        }
+        val jsMain by getting {
+            dependsOn(noOpMain)
         }
     }
 }
