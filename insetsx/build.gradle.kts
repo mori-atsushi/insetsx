@@ -33,6 +33,10 @@ kotlin {
         browser()
     }
 
+    wasm {
+        browser()
+    }
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -77,6 +81,9 @@ kotlin {
             dependsOn(noOpMain)
         }
         val jsMain by getting {
+            dependsOn(noOpMain)
+        }
+        val wasmMain by getting {
             dependsOn(noOpMain)
         }
     }
