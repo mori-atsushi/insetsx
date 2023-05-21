@@ -24,7 +24,7 @@ dependencyResolutionManagement {
             version("androidx-core", "1.10.1")
             version("jetbrains-compose", "1.4.0")
             version("accompanist", "0.30.1")
-            version("spotless", "6.13.0")
+            version("spotless", "6.18.0")
             version("ktlint", "0.48.1")
             version("publish", "0.25.2")
 
