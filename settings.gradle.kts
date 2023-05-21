@@ -19,7 +19,7 @@ dependencyResolutionManagement {
             version("kotlin", "1.8.20")
             version("kotlinx-atomicfu", "0.18.5")
             version("agp", "7.4.2")
-            version("androidx-appcompat", "1.6.0")
+            version("androidx-appcompat", "1.6.1")
             version("androidx-activity", "1.6.1")
             version("androidx-core", "1.10.0")
             version("jetbrains-compose", "1.4.0")
