@@ -8,7 +8,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 
 /**
- * It always returns 0 because desktop has no window insets.
+ * It always returns 0.
  */
 actual val WindowInsets.Companion.navigationBars: WindowInsets
     @Composable
@@ -16,7 +16,7 @@ actual val WindowInsets.Companion.navigationBars: WindowInsets
     get() = EmptyWindowInsets
 
 /**
- * It always returns 0 because desktop has no window insets.
+ * It always returns 0.
  */
 actual val WindowInsets.Companion.statusBars: WindowInsets
     @Composable
@@ -24,7 +24,7 @@ actual val WindowInsets.Companion.statusBars: WindowInsets
     get() = EmptyWindowInsets
 
 /**
- * It always returns 0 because desktop has no window insets.
+ * It always returns 0.
  */
 actual val WindowInsets.Companion.systemBars: WindowInsets
     @Composable
@@ -32,7 +32,7 @@ actual val WindowInsets.Companion.systemBars: WindowInsets
     get() = EmptyWindowInsets
 
 /**
- * It always returns 0 because desktop has no window insets.
+ * It always returns 0.
  */
 actual val WindowInsets.Companion.safeArea: WindowInsets
     @Composable
@@ -40,7 +40,7 @@ actual val WindowInsets.Companion.safeArea: WindowInsets
     get() = EmptyWindowInsets
 
 /**
- * It always returns 0 because desktop has no window insets.
+ * It always returns 0.
  */
 actual val WindowInsets.Companion.ime: WindowInsets
     @Composable
@@ -48,7 +48,7 @@ actual val WindowInsets.Companion.ime: WindowInsets
     get() = EmptyWindowInsets
 
 /**
- * It always returns 0 because desktop has no window insets.
+ * It always returns 0.
  */
 actual val WindowInsets.Companion.safeDrawing: WindowInsets
     @Composable
