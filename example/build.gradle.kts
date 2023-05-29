@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 import org.jetbrains.compose.experimental.dsl.IOSDevices
 
 plugins {
@@ -27,6 +28,20 @@ kotlin {
     }
 
     jvm("desktop")
+
+    wasm {
+        moduleName = "insetsx-example"
+        browser {
+            commonWebpackConfig {
+                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).copy(
+                    open = mapOf(
+                        "app" to mapOf("name" to "google chrome")
+                    ),
+                )
+            }
+        }
+        binaries.executable()
+    }
 
     sourceSets {
         val commonMain by getting {
@@ -68,6 +83,9 @@ kotlin {
                 implementation(compose.desktop.currentOs)
             }
         }
+        val wasmMain by getting {
+            dependsOn(commonMain)
+        }
     }
 }
 
@@ -96,6 +114,8 @@ compose {
                 }
             }
         }
+
+        web.application {}
     }
 
     desktop.application {
