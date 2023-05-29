@@ -7,5 +7,8 @@ import androidx.compose.runtime.Composable
  */
 @Composable
 actual fun rememberWindowInsetsController(): WindowInsetsController? {
-    return null
+    return value
 }
+
+// Workaround for Kotlin/Wasm
+private val value: WindowInsetsController? = null
