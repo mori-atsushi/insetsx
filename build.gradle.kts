@@ -29,4 +29,17 @@ subprojects {
                 )
         }
     }
+
+    configurations.all {
+        val conf = this
+        conf.resolutionStrategy.eachDependency {
+            val isWasm = conf.name.contains("wasm", true)
+            val isJs = conf.name.contains("js", true)
+            val isComposeGroup = requested.module.group.startsWith("org.jetbrains.compose")
+            val isComposeCompiler = requested.module.group.startsWith("org.jetbrains.compose.compiler")
+            if (isComposeGroup && !isComposeCompiler && !isWasm && !isJs) {
+                useVersion("1.4.0")
+            }
+        }
+    }
 }

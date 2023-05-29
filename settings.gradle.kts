@@ -3,6 +3,7 @@ pluginManagement {
         gradlePluginPortal()
         mavenCentral()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+        maven("https://maven.pkg.jetbrains.space/kotlin/p/wasm/experimental")
         google()
     }
 }
@@ -11,6 +12,7 @@ dependencyResolutionManagement {
     repositories {
         mavenCentral()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+        maven("https://maven.pkg.jetbrains.space/kotlin/p/wasm/experimental")
         google()
     }
 
@@ -22,7 +24,7 @@ dependencyResolutionManagement {
             version("androidx-appcompat", "1.6.1")
             version("androidx-activity", "1.7.2")
             version("androidx-core", "1.10.1")
-            version("jetbrains-compose", "1.4.0")
+            version("jetbrains-compose", "1.4.0-dev-wasm06")
             version("accompanist", "0.30.1")
             version("spotless", "6.19.0")
             version("ktlint", "0.48.1")
@@ -36,7 +38,11 @@ dependencyResolutionManagement {
                 .versionRef("androidx-core")
             library("androidx-activity-compose", "androidx.activity", "activity-compose")
                 .versionRef("androidx-activity")
-            library("accompanist-systemuicontroller", "com.google.accompanist", "accompanist-systemuicontroller")
+            library(
+                "accompanist-systemuicontroller",
+                "com.google.accompanist",
+                "accompanist-systemuicontroller"
+            )
                 .versionRef("accompanist")
 
             plugin("android-application", "com.android.application")
