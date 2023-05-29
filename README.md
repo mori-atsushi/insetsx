@@ -21,7 +21,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("com.moriatsushi.insetsx:insetsx:0.1.0-alpha06")
+                implementation("com.moriatsushi.insetsx:insetsx:0.1.0-alpha07")
             }
         }
     }
@@ -52,7 +52,7 @@ Detail: [Lay out your app within window insets](https://developer.android.com/de
 
 ### iOS
 
-1. (option) If you are using `WindowInsetsController`, use `WindowInsetsUIViewController` instead of `ComposeUIViewController`.
+1. (option) If you want to use the `WindowInsetsController`, use `WindowInsetsUIViewController` instead of `ComposeUIViewController`.
 
 ```kotlin
 fun MainUIViewController(): UIViewController {
