@@ -43,11 +43,11 @@ internal class WindowInsetsUIViewController :
     override fun preferredStatusBarStyle(): UIStatusBarStyle =
         _preferredStatusBarStyle
 
-    private var _prefersStatusBarHidden: Boolean by mutableStateOf(true)
+    private var _prefersStatusBarHidden: Boolean by mutableStateOf(false)
     override fun prefersStatusBarHidden(): Boolean =
         _prefersStatusBarHidden
 
-    private var _prefersHomeIndicatorAutoHidden: Boolean by mutableStateOf(true)
+    private var _prefersHomeIndicatorAutoHidden: Boolean by mutableStateOf(false)
     override fun prefersHomeIndicatorAutoHidden(): Boolean =
         _prefersHomeIndicatorAutoHidden
 
