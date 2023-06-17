@@ -29,6 +29,21 @@ kotlin {
 
     jvm("desktop")
 
+    macosX64 {
+        binaries {
+            executable {
+                entryPoint = "main"
+            }
+        }
+    }
+    macosArm64 {
+        binaries {
+            executable {
+                entryPoint = "main"
+            }
+        }
+    }
+
     wasm {
         moduleName = "insetsx-example"
         browser {
@@ -75,6 +90,15 @@ kotlin {
         }
         val uikitSimArm64Main by getting {
             dependsOn(uikitMain)
+        }
+        val macosMain by creating {
+            dependsOn(commonMain)
+        }
+        val macosX64Main by getting {
+            dependsOn(macosMain)
+        }
+        val macosArm64Main by getting {
+            dependsOn(macosMain)
         }
         val desktopMain by getting {
             dependsOn(commonMain)
