@@ -27,6 +27,9 @@ kotlin {
         }
     }
 
+    macosX64()
+    macosArm64()
+
     jvm("desktop")
 
     js(IR) {
@@ -76,6 +79,12 @@ kotlin {
         }
         val noOpMain by creating {
             dependsOn(commonMain)
+        }
+        val macosX64Main by getting {
+            dependsOn(noOpMain)
+        }
+        val macosArm64Main by getting {
+            dependsOn(noOpMain)
         }
         val desktopMain by getting {
             dependsOn(noOpMain)
