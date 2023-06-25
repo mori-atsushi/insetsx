@@ -2,10 +2,7 @@ package com.moriatsushi.insetsx
 
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.NonRestartableComposable
-import androidx.compose.ui.unit.Density
-import androidx.compose.ui.unit.LayoutDirection
 
 /**
  * It always returns 0.
@@ -13,7 +10,15 @@ import androidx.compose.ui.unit.LayoutDirection
 actual val WindowInsets.Companion.navigationBars: WindowInsets
     @Composable
     @NonRestartableComposable
-    get() = EmptyWindowInsets
+    get() = zero
+
+/**
+ * It always returns 0.
+ */
+actual val WindowInsets.Companion.captionBar: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = zero
 
 /**
  * It always returns 0.
@@ -21,7 +26,7 @@ actual val WindowInsets.Companion.navigationBars: WindowInsets
 actual val WindowInsets.Companion.statusBars: WindowInsets
     @Composable
     @NonRestartableComposable
-    get() = EmptyWindowInsets
+    get() = zero
 
 /**
  * It always returns 0.
@@ -29,7 +34,23 @@ actual val WindowInsets.Companion.statusBars: WindowInsets
 actual val WindowInsets.Companion.systemBars: WindowInsets
     @Composable
     @NonRestartableComposable
-    get() = EmptyWindowInsets
+    get() = zero
+
+/**
+ * It always returns 0.
+ */
+actual val WindowInsets.Companion.systemGestures: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = zero
+
+/**
+ * It always returns 0.
+ */
+actual val WindowInsets.Companion.tappableElement: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = zero
 
 /**
  * It always returns 0.
@@ -37,7 +58,23 @@ actual val WindowInsets.Companion.systemBars: WindowInsets
 actual val WindowInsets.Companion.safeArea: WindowInsets
     @Composable
     @NonRestartableComposable
-    get() = EmptyWindowInsets
+    get() = zero
+
+/**
+ * It always returns 0.
+ */
+actual val WindowInsets.Companion.waterfall: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = zero
+
+/**
+ * It always returns 0.
+ */
+actual val WindowInsets.Companion.mandatorySystemGestures: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = zero
 
 /**
  * It always returns 0.
@@ -45,7 +82,7 @@ actual val WindowInsets.Companion.safeArea: WindowInsets
 actual val WindowInsets.Companion.ime: WindowInsets
     @Composable
     @NonRestartableComposable
-    get() = EmptyWindowInsets
+    get() = zero
 
 /**
  * It always returns 0.
@@ -53,23 +90,20 @@ actual val WindowInsets.Companion.ime: WindowInsets
 actual val WindowInsets.Companion.safeDrawing: WindowInsets
     @Composable
     @NonRestartableComposable
-    get() = EmptyWindowInsets
+    get() = zero
 
-@Immutable
-private object EmptyWindowInsets : WindowInsets {
-    override fun getBottom(density: Density): Int {
-        return 0
-    }
+/**
+ * It always returns 0.
+ */
+actual val WindowInsets.Companion.safeGestures: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = zero
 
-    override fun getLeft(density: Density, layoutDirection: LayoutDirection): Int {
-        return 0
-    }
-
-    override fun getRight(density: Density, layoutDirection: LayoutDirection): Int {
-        return 0
-    }
-
-    override fun getTop(density: Density): Int {
-        return 0
-    }
-}
+/**
+ * It always returns 0.
+ */
+actual val WindowInsets.Companion.safeContent: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = zero
