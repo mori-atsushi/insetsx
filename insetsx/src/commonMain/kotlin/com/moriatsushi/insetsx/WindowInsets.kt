@@ -50,6 +50,16 @@ expect val WindowInsets.Companion.systemGestures: WindowInsets
     @Composable get
 
 /**
+ * The insets representing the tappable element.
+ *
+ * * In Android: tappable element
+ * * In iOS: top of safe area (status bar)
+ * * In desktop and web: return 0
+ */
+expect val WindowInsets.Companion.tappableElement: WindowInsets
+    @Composable get
+
+/**
  * The insets that include unsafe areas such as system bars and display cutouts,
  * but not including [ime].
  *

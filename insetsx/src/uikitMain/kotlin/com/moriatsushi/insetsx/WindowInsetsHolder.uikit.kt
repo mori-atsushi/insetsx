@@ -47,6 +47,7 @@ internal class WindowInsetsHolder(
     )
     val systemBars = navigationBars.union(statusBars)
     val systemGestures = safeArea.only(WindowInsetsSides.Bottom)
+    val tappableElement = safeArea.only(WindowInsetsSides.Top)
     val ime = UIKeyboardInsets()
     val safeDrawing = safeArea.union(ime)
 

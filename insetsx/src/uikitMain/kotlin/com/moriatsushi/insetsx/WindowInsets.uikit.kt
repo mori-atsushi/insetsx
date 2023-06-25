@@ -38,6 +38,14 @@ actual val WindowInsets.Companion.systemGestures: WindowInsets
     get() = WindowInsetsHolder.current().systemGestures
 
 /**
+ * The insets representing the tappable element.
+ */
+actual val WindowInsets.Companion.tappableElement: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = WindowInsetsHolder.current().tappableElement
+
+/**
  * The insets representing the safe area.
  */
 actual val WindowInsets.Companion.safeArea: WindowInsets

@@ -42,6 +42,14 @@ actual val WindowInsets.Companion.systemGestures: WindowInsets
 /**
  * It always returns 0.
  */
+actual val WindowInsets.Companion.tappableElement: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = EmptyWindowInsets
+
+/**
+ * It always returns 0.
+ */
 actual val WindowInsets.Companion.safeArea: WindowInsets
     @Composable
     @NonRestartableComposable

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.safeDrawing as androidSafeDrawing
 import androidx.compose.foundation.layout.statusBars as androidStatusBars
 import androidx.compose.foundation.layout.systemBars as androidSystemBars
 import androidx.compose.foundation.layout.systemGestures as androidSystemGestures
+import androidx.compose.foundation.layout.tappableElement as androidTappableElement
 import androidx.compose.foundation.layout.union
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
@@ -44,6 +45,15 @@ actual val WindowInsets.Companion.systemGestures: WindowInsets
     @Composable
     @NonRestartableComposable
     get() = androidSystemGestures
+
+
+/**
+ * The insets representing the tappable element.
+ */
+actual val WindowInsets.Companion.tappableElement: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = androidTappableElement
 
 /**
  * The insets that include unsafe areas such as system bars and display cutouts,
