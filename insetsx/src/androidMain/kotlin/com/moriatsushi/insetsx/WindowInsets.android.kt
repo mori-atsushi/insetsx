@@ -3,17 +3,17 @@ package com.moriatsushi.insetsx
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.displayCutout as androidDisplayCutout
 import androidx.compose.foundation.layout.ime as androidIme
+import androidx.compose.foundation.layout.mandatorySystemGestures as androidMandatorySystemGestures
 import androidx.compose.foundation.layout.navigationBars as androidNavigationBars
+import androidx.compose.foundation.layout.safeContent as androidSafeContent
 import androidx.compose.foundation.layout.safeDrawing as androidSafeDrawing
+import androidx.compose.foundation.layout.safeGestures as androidSafeGestures
 import androidx.compose.foundation.layout.statusBars as androidStatusBars
 import androidx.compose.foundation.layout.systemBars as androidSystemBars
 import androidx.compose.foundation.layout.systemGestures as androidSystemGestures
 import androidx.compose.foundation.layout.tappableElement as androidTappableElement
-import androidx.compose.foundation.layout.waterfall as androidWaterfall
-import androidx.compose.foundation.layout.mandatorySystemGestures as androidMandatorySystemGestures
-import androidx.compose.foundation.layout.safeGestures as androidSafeGestures
-import androidx.compose.foundation.layout.safeContent as androidSafeContent
 import androidx.compose.foundation.layout.union
+import androidx.compose.foundation.layout.waterfall as androidWaterfall
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 
@@ -50,7 +50,6 @@ actual val WindowInsets.Companion.systemGestures: WindowInsets
     @NonRestartableComposable
     get() = androidSystemGestures
 
-
 /**
  * The insets representing the tappable element.
  */
@@ -67,7 +66,6 @@ actual val WindowInsets.Companion.safeArea: WindowInsets
     @Composable
     @NonRestartableComposable
     get() = androidSystemBars.union(androidDisplayCutout)
-
 
 /**
  * The insets representing curved areas in a waterfall display.
@@ -109,7 +107,6 @@ actual val WindowInsets.Companion.safeGestures: WindowInsets
     @Composable
     @NonRestartableComposable
     get() = androidSafeGestures
-
 
 /**
  * The insets that include all areas that may be drawn over or have gesture confusion.
