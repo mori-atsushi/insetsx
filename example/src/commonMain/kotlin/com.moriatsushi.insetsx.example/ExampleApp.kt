@@ -56,7 +56,7 @@ fun ExampleApp() {
     ) {
         key(useDarkMode) {
             ExampleApp(
-                onToggleDarkMode = { useDarkMode = !useDarkMode },
+                onToggleDarkMode = { useDarkMode = !useDarkMode }
             )
         }
     }
@@ -66,7 +66,7 @@ fun ExampleApp() {
 @Composable
 private fun ExampleApp(
     onToggleDarkMode: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Scaffold(
         modifier = modifier,
@@ -99,7 +99,7 @@ private fun ExampleTopAppBar(
             IconButton(onClick = onToggleDarkMode) {
                 Icon(
                     imageVector = Icons.Filled.Nightlight,
-                    contentDescription = null,
+                    contentDescription = null
                 )
             }
         },
@@ -143,7 +143,7 @@ private fun ExampleContent(
         TextField(
             value = text,
             onValueChange = { text = it },
-            placeholder = { Text("Text Field") },
+            placeholder = { Text("Text Field") }
         )
     }
 }
