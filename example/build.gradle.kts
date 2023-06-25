@@ -64,7 +64,7 @@ kotlin {
                 implementation(project(":insetsx"))
                 implementation(compose.ui)
                 implementation(compose.foundation)
-                implementation(compose.material)
+                implementation(compose.material3)
                 implementation(compose.runtime)
 
                 // Workaround for https://youtrack.jetbrains.com/issue/KT-41821
