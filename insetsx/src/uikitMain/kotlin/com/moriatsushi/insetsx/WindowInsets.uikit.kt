@@ -54,6 +54,14 @@ actual val WindowInsets.Companion.safeArea: WindowInsets
     get() = WindowInsetsHolder.current().safeArea
 
 /**
+ * It always returns 0.
+ */
+actual val WindowInsets.Companion.waterfall: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = zero
+
+/**
  * The insets representing the area of the software keyboard.
  */
 @ExperimentalSoftwareKeyboardApi

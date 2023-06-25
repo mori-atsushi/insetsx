@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.statusBars as androidStatusBars
 import androidx.compose.foundation.layout.systemBars as androidSystemBars
 import androidx.compose.foundation.layout.systemGestures as androidSystemGestures
 import androidx.compose.foundation.layout.tappableElement as androidTappableElement
+import androidx.compose.foundation.layout.waterfall as androidWaterfall
 import androidx.compose.foundation.layout.union
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
@@ -63,6 +64,15 @@ actual val WindowInsets.Companion.safeArea: WindowInsets
     @Composable
     @NonRestartableComposable
     get() = androidSystemBars.union(androidDisplayCutout)
+
+
+/**
+ * The insets representing curved areas in a waterfall display.
+ */
+actual val WindowInsets.Companion.waterfall: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = androidWaterfall
 
 /**
  * The insets representing the area of the software keyboard.

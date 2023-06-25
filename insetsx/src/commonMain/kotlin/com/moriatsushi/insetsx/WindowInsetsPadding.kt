@@ -22,6 +22,13 @@ fun Modifier.safeAreaPadding() = windowInsetsPadding {
 }
 
 /**
+ * Adds padding to accommodate the [status bars][WindowInsets.Companion.statusBars] insets.
+ */
+fun Modifier.statusBarsPadding() = windowInsetsPadding {
+    WindowInsets.statusBars
+}
+
+/**
  * Adds padding to accommodate the [system bars][WindowInsets.Companion.systemBars] insets.
  */
 fun Modifier.systemBarsPadding() = windowInsetsPadding {
@@ -36,10 +43,10 @@ fun Modifier.systemGesturesPadding() = windowInsetsPadding {
 }
 
 /**
- * Adds padding to accommodate the [status bars][WindowInsets.Companion.statusBars] insets.
+ * Adds padding to accommodate the [waterfall][WindowInsets.Companion.waterfall] insets.
  */
-fun Modifier.statusBarsPadding() = windowInsetsPadding {
-    WindowInsets.statusBars
+fun Modifier.waterfallPadding() = windowInsetsPadding {
+    WindowInsets.waterfall
 }
 
 /**

@@ -2,6 +2,9 @@ package com.moriatsushi.insetsx
 
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.LayoutDirection
 
 /**
  * The insets representing navigation bars.
@@ -60,6 +63,15 @@ expect val WindowInsets.Companion.tappableElement: WindowInsets
     @Composable get
 
 /**
+ * The insets representing curved areas in a waterfall display.
+ *
+ * * In Android: waterfall
+ * * In iOS, desktop and web: return 0
+ */
+expect val WindowInsets.Companion.waterfall: WindowInsets
+    @Composable get
+
+/**
  * The insets that include unsafe areas such as system bars and display cutouts,
  * but not including [ime].
  *
@@ -91,3 +103,28 @@ expect val WindowInsets.Companion.ime: WindowInsets
 @ExperimentalSoftwareKeyboardApi
 expect val WindowInsets.Companion.safeDrawing: WindowInsets
     @Composable get
+
+/**
+ * It always returns 0.
+ */
+internal val WindowInsets.Companion.zero: WindowInsets
+    get() = ZeroWindowInsets
+
+@Immutable
+private object ZeroWindowInsets : WindowInsets {
+    override fun getBottom(density: Density): Int {
+        return 0
+    }
+
+    override fun getLeft(density: Density, layoutDirection: LayoutDirection): Int {
+        return 0
+    }
+
+    override fun getRight(density: Density, layoutDirection: LayoutDirection): Int {
+        return 0
+    }
+
+    override fun getTop(density: Density): Int {
+        return 0
+    }
+}
