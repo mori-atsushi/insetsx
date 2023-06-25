@@ -73,6 +73,13 @@ fun Modifier.navigationBarsPadding(): Modifier = windowInsetsPadding {
 }
 
 /**
+ * Adds padding to accommodate the [caption bar][WindowInsets.Companion.captionBar] insets.
+ */
+fun Modifier.captionBarPadding(): Modifier = windowInsetsPadding {
+    WindowInsets.captionBar
+}
+
+/**
  * Adds padding to accommodate the [safe gestures][WindowInsets.Companion.safeGestures] insets.
  */
 fun Modifier.safeGesturesPadding(): Modifier = windowInsetsPadding {

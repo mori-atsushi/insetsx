@@ -1,6 +1,7 @@
 package com.moriatsushi.insetsx
 
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.captionBar as androidCaptionBar
 import androidx.compose.foundation.layout.displayCutout as androidDisplayCutout
 import androidx.compose.foundation.layout.ime as androidIme
 import androidx.compose.foundation.layout.mandatorySystemGestures as androidMandatorySystemGestures
@@ -24,6 +25,14 @@ actual val WindowInsets.Companion.navigationBars: WindowInsets
     @Composable
     @NonRestartableComposable
     get() = androidNavigationBars
+
+/**
+ * The insets representing a caption bar.
+ */
+actual val WindowInsets.Companion.captionBar: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = androidCaptionBar
 
 /**
  * The insets representing status bars.

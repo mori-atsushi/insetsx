@@ -19,6 +19,15 @@ expect val WindowInsets.Companion.navigationBars: WindowInsets
     @Composable get
 
 /**
+ * The insets representing a caption bar.
+ *
+ * * In Android: a caption bar
+ * * In iOS, desktop and web: return 0
+ */
+expect val WindowInsets.Companion.captionBar: WindowInsets
+    @Composable get
+
+/**
  * The insets representing status bars.
  *
  * When the status bars are hidden, all values are changed to 0.

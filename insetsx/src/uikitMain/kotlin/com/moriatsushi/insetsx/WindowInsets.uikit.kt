@@ -13,6 +13,14 @@ actual val WindowInsets.Companion.navigationBars: WindowInsets
     get() = WindowInsetsHolder.current().navigationBars
 
 /**
+ * It always returns 0.
+ */
+actual val WindowInsets.Companion.captionBar: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = zero
+
+/**
  * The insets representing the status bar.
  */
 actual val WindowInsets.Companion.statusBars: WindowInsets
