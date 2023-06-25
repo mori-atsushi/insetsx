@@ -83,3 +83,11 @@ actual val WindowInsets.Companion.safeDrawing: WindowInsets
     @Composable
     @NonRestartableComposable
     get() = zero
+
+/**
+ * It always returns 0.
+ */
+actual val WindowInsets.Companion.safeGestures: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = zero

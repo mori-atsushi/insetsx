@@ -50,6 +50,7 @@ internal class WindowInsetsHolder(
     val tappableElement = safeArea.only(WindowInsetsSides.Top)
     val ime = UIKeyboardInsets()
     val safeDrawing = safeArea.union(ime)
+    val safeGestures = safeArea.only(WindowInsetsSides.Vertical)
 
     private val coroutineJob = Job()
     private val coroutineScope = CoroutineScope(coroutineContext + Job())

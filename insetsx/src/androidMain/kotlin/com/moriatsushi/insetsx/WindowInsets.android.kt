@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.systemGestures as androidSystemGesture
 import androidx.compose.foundation.layout.tappableElement as androidTappableElement
 import androidx.compose.foundation.layout.waterfall as androidWaterfall
 import androidx.compose.foundation.layout.mandatorySystemGestures as androidMandatorySystemGestures
+import androidx.compose.foundation.layout.safeGestures as androidSafeGestures
 import androidx.compose.foundation.layout.union
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
@@ -99,3 +100,11 @@ actual val WindowInsets.Companion.safeDrawing: WindowInsets
     @Composable
     @NonRestartableComposable
     get() = androidSafeDrawing
+
+/**
+ * The insets that include areas where gestures may be confused with other input.
+ */
+actual val WindowInsets.Companion.safeGestures: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = androidSafeGestures

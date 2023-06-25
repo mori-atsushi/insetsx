@@ -72,6 +72,13 @@ fun Modifier.navigationBarsPadding() = windowInsetsPadding {
     WindowInsets.navigationBars
 }
 
+/**
+ * Adds padding to accommodate the [safe gestures][WindowInsets.Companion.safeGestures] insets.
+ */
+fun Modifier.safeGesturesPadding() = windowInsetsPadding {
+    WindowInsets.safeGestures
+}
+
 private inline fun Modifier.windowInsetsPadding(
     crossinline block: @Composable () -> WindowInsets,
 ): Modifier = composed {

@@ -87,3 +87,12 @@ actual val WindowInsets.Companion.safeDrawing: WindowInsets
     @Composable
     @NonRestartableComposable
     get() = WindowInsetsHolder.current().safeDrawing
+
+/**
+ * The insets that include areas where gestures may be confused with other input.
+ */
+@ExperimentalSoftwareKeyboardApi
+actual val WindowInsets.Companion.safeGestures: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = WindowInsetsHolder.current().safeGestures

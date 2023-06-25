@@ -46,7 +46,7 @@ expect val WindowInsets.Companion.systemBars: WindowInsets
  * input.
  *
  * * In Android: system gestures
- * * In iOS: top and bottom (home indicator)
+ * * In iOS: bottom of safe area (home indicator)
  * * In desktop and web: return 0
  */
 expect val WindowInsets.Companion.systemGestures: WindowInsets
@@ -87,7 +87,7 @@ expect val WindowInsets.Companion.safeArea: WindowInsets
  * input.
  *
  * * In Android: mandatory system gestures
- * * In iOS: top and bottom (home indicator)
+ * * In iOS: bottom of safe area (home indicator)
  * * In desktop and web: return 0
  */
 expect val WindowInsets.Companion.mandatorySystemGestures: WindowInsets
@@ -113,6 +113,17 @@ expect val WindowInsets.Companion.ime: WindowInsets
  */
 @ExperimentalSoftwareKeyboardApi
 expect val WindowInsets.Companion.safeDrawing: WindowInsets
+    @Composable get
+
+/**
+ * The insets that include areas where gestures may be confused with other input.
+ *
+ * * In Android: [system gestures][systemGestures] + [mandatory system gestures][mandatorySystemGestures],
+ * [rounded display areas][waterfall], and [tappable areas][tappableElement].
+ * * In iOS: top and bottom of safe area (home indicator + status bar)
+ * * In desktop and web: return 0
+ */
+expect val WindowInsets.Companion.safeGestures: WindowInsets
     @Composable get
 
 /**
