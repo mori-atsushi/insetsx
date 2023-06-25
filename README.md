@@ -3,7 +3,7 @@
 [![](https://img.shields.io/maven-central/v/com.moriatsushi.insetsx/insetsx)](https://mvnrepository.com/artifact/com.moriatsushi.insetsx/insetsx)
 [![](https://img.shields.io/github/license/mori-atsushi/insetsx)](https://github.com/mori-atsushi/insetsx/blob/main/LICENSE)
 
-<img src="https://user-images.githubusercontent.com/13435109/236607484-22248c02-65de-4954-97a3-349907a2343e.png" width="720px"/>
+![](https://github.com/mori-atsushi/koject/assets/13435109/12ce8727-fcee-43a9-9f2c-34a58316728f)
 
 InsetsX provides a [WindowInsets](https://developer.android.com/reference/kotlin/androidx/compose/foundation/layout/WindowInsets) utility for [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/).
 
