@@ -10,28 +10,28 @@ import androidx.compose.ui.composed
  * Adds padding to accommodate the [safe drawing][WindowInsets.Companion.safeDrawing] insets.
  */
 @ExperimentalSoftwareKeyboardApi
-fun Modifier.safeDrawingPadding() = Modifier.windowInsetsPadding {
+fun Modifier.safeDrawingPadding() = windowInsetsPadding {
     WindowInsets.safeDrawing
 }
 
 /**
  * Adds padding to accommodate the [safe area][WindowInsets.Companion.safeArea] insets.
  */
-fun Modifier.safeAreaPadding() = Modifier.windowInsetsPadding {
+fun Modifier.safeAreaPadding() = windowInsetsPadding {
     WindowInsets.safeArea
 }
 
 /**
  * Adds padding to accommodate the [system bars][WindowInsets.Companion.systemBars] insets.
  */
-fun Modifier.systemBarsPadding() = Modifier.windowInsetsPadding {
+fun Modifier.systemBarsPadding() = windowInsetsPadding {
     WindowInsets.systemBars
 }
 
 /**
  * Adds padding to accommodate the [status bars][WindowInsets.Companion.statusBars] insets.
  */
-fun Modifier.statusBarsPadding() = Modifier.windowInsetsPadding {
+fun Modifier.statusBarsPadding() = windowInsetsPadding {
     WindowInsets.statusBars
 }
 
@@ -39,14 +39,14 @@ fun Modifier.statusBarsPadding() = Modifier.windowInsetsPadding {
  * Adds padding to accommodate the [ime][WindowInsets.Companion.ime] insets.
  */
 @ExperimentalSoftwareKeyboardApi
-fun Modifier.imePadding() = Modifier.windowInsetsPadding {
+fun Modifier.imePadding() = windowInsetsPadding {
     WindowInsets.ime
 }
 
 /**
  * Adds padding to accommodate the [navigation bars][WindowInsets.Companion.navigationBars] insets.
  */
-fun Modifier.navigationBarsPadding() = Modifier.windowInsetsPadding {
+fun Modifier.navigationBarsPadding() = windowInsetsPadding {
     WindowInsets.navigationBars
 }
 
