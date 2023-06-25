@@ -83,6 +83,17 @@ expect val WindowInsets.Companion.safeArea: WindowInsets
     @Composable get
 
 /**
+ * The insets representing system gestures that have priority and may consume some or all touch
+ * input.
+ *
+ * * In Android: mandatory system gestures
+ * * In iOS: top and bottom (home indicator)
+ * * In desktop and web: return 0
+ */
+expect val WindowInsets.Companion.mandatorySystemGestures: WindowInsets
+    @Composable get
+
+/**
  * The insets representing the area of the software keyboard.
  *
  * * In Android: IME

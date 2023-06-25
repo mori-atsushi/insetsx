@@ -63,6 +63,14 @@ actual val WindowInsets.Companion.waterfall: WindowInsets
 /**
  * It always returns 0.
  */
+actual val WindowInsets.Companion.mandatorySystemGestures: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = zero
+
+/**
+ * It always returns 0.
+ */
 actual val WindowInsets.Companion.ime: WindowInsets
     @Composable
     @NonRestartableComposable

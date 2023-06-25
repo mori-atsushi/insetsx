@@ -50,6 +50,14 @@ fun Modifier.waterfallPadding() = windowInsetsPadding {
 }
 
 /**
+ * Adds padding to accommodate the
+ * [mandatory system gestures][WindowInsets.Companion.mandatorySystemGestures] insets.
+ */
+fun Modifier.mandatorySystemGesturesPadding() = windowInsetsPadding {
+    WindowInsets.mandatorySystemGestures
+}
+
+/**
  * Adds padding to accommodate the [ime][WindowInsets.Companion.ime] insets.
  */
 @ExperimentalSoftwareKeyboardApi

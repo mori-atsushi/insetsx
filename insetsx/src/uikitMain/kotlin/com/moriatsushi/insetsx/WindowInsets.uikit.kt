@@ -62,6 +62,15 @@ actual val WindowInsets.Companion.waterfall: WindowInsets
     get() = zero
 
 /**
+ * The insets representing system gestures that have priority and may consume some or all touch
+ * input.
+ */
+actual val WindowInsets.Companion.mandatorySystemGestures: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = WindowInsetsHolder.current().systemGestures
+
+/**
  * The insets representing the area of the software keyboard.
  */
 @ExperimentalSoftwareKeyboardApi

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.systemBars as androidSystemBars
 import androidx.compose.foundation.layout.systemGestures as androidSystemGestures
 import androidx.compose.foundation.layout.tappableElement as androidTappableElement
 import androidx.compose.foundation.layout.waterfall as androidWaterfall
+import androidx.compose.foundation.layout.mandatorySystemGestures as androidMandatorySystemGestures
 import androidx.compose.foundation.layout.union
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
@@ -73,6 +74,15 @@ actual val WindowInsets.Companion.waterfall: WindowInsets
     @Composable
     @NonRestartableComposable
     get() = androidWaterfall
+
+/**
+ * The insets representing system gestures that have priority and may consume some or all touch
+ * input.
+ */
+actual val WindowInsets.Companion.mandatorySystemGestures: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = androidMandatorySystemGestures
 
 /**
  * The insets representing the area of the software keyboard.
