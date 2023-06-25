@@ -79,6 +79,13 @@ fun Modifier.safeGesturesPadding() = windowInsetsPadding {
     WindowInsets.safeGestures
 }
 
+/**
+ * Adds padding to accommodate the [safe content][WindowInsets.Companion.safeContent] insets.
+ */
+fun Modifier.safeContentPadding() = windowInsetsPadding {
+    WindowInsets.safeContent
+}
+
 private inline fun Modifier.windowInsetsPadding(
     crossinline block: @Composable () -> WindowInsets,
 ): Modifier = composed {

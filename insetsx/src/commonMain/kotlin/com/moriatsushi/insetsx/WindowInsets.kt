@@ -127,6 +127,16 @@ expect val WindowInsets.Companion.safeGestures: WindowInsets
     @Composable get
 
 /**
+ * The insets that include all areas that may be drawn over or have gesture confusion.
+ *
+ * * In Android: [systemGestures] + [safeGestures].
+ * * In iOS: safe area + IME
+ * * In desktop and web: return 0
+ */
+expect val WindowInsets.Companion.safeContent: WindowInsets
+    @Composable get
+
+/**
  * It always returns 0.
  */
 internal val WindowInsets.Companion.zero: WindowInsets
