@@ -29,6 +29,15 @@ actual val WindowInsets.Companion.systemBars: WindowInsets
     get() = WindowInsetsHolder.current().systemBars
 
 /**
+ * The insets representing system gestures that have priority and may consume some or all touch
+ * input.
+ */
+actual val WindowInsets.Companion.systemGestures: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = WindowInsetsHolder.current().systemGestures
+
+/**
  * The insets representing the safe area.
  */
 actual val WindowInsets.Companion.safeArea: WindowInsets

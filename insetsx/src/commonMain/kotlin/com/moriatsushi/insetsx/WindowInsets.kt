@@ -39,6 +39,17 @@ expect val WindowInsets.Companion.systemBars: WindowInsets
     @Composable get
 
 /**
+ * The insets representing system gestures that have priority and may consume some or all touch
+ * input.
+ *
+ * * In Android: system gestures
+ * * In iOS: top and bottom (home indicator)
+ * * In desktop and web: return 0
+ */
+expect val WindowInsets.Companion.systemGestures: WindowInsets
+    @Composable get
+
+/**
  * The insets that include unsafe areas such as system bars and display cutouts,
  * but not including [ime].
  *

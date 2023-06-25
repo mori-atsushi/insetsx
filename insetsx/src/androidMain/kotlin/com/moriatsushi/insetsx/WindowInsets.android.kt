@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.navigationBars as androidNavigationBar
 import androidx.compose.foundation.layout.safeDrawing as androidSafeDrawing
 import androidx.compose.foundation.layout.statusBars as androidStatusBars
 import androidx.compose.foundation.layout.systemBars as androidSystemBars
+import androidx.compose.foundation.layout.systemGestures as androidSystemGestures
 import androidx.compose.foundation.layout.union
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
@@ -34,6 +35,15 @@ actual val WindowInsets.Companion.systemBars: WindowInsets
     @Composable
     @NonRestartableComposable
     get() = androidSystemBars
+
+/**
+ * The insets representing system gestures that have priority and may consume some or all touch
+ * input.
+ */
+actual val WindowInsets.Companion.systemGestures: WindowInsets
+    @Composable
+    @NonRestartableComposable
+    get() = androidSystemGestures
 
 /**
  * The insets that include unsafe areas such as system bars and display cutouts,

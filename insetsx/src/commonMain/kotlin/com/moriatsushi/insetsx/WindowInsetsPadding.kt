@@ -29,6 +29,13 @@ fun Modifier.systemBarsPadding() = windowInsetsPadding {
 }
 
 /**
+ * Adds padding to accommodate the [system gestures][WindowInsets.Companion.systemGestures] insets.
+ */
+fun Modifier.systemGesturesPadding() = windowInsetsPadding {
+    WindowInsets.systemGestures
+}
+
+/**
  * Adds padding to accommodate the [status bars][WindowInsets.Companion.statusBars] insets.
  */
 fun Modifier.statusBarsPadding() = windowInsetsPadding {

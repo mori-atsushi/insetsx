@@ -2,6 +2,8 @@ package com.moriatsushi.insetsx
 
 import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.union
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -44,6 +46,7 @@ internal class WindowInsetsHolder(
         }
     )
     val systemBars = navigationBars.union(statusBars)
+    val systemGestures = safeArea.only(WindowInsetsSides.Bottom)
     val ime = UIKeyboardInsets()
     val safeDrawing = safeArea.union(ime)
 
