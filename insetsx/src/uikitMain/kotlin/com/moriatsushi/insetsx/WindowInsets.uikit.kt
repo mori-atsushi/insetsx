@@ -31,7 +31,6 @@ actual val WindowInsets.Companion.systemBars: WindowInsets
 /**
  * The insets representing the safe area.
  */
-@ExperimentalSoftwareKeyboardApi
 actual val WindowInsets.Companion.safeArea: WindowInsets
     @Composable
     @NonRestartableComposable
