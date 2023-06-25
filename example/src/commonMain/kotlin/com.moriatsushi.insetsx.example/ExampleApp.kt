@@ -36,6 +36,7 @@ import androidx.compose.ui.Modifier
 import com.moriatsushi.insetsx.ExperimentalSoftwareKeyboardApi
 import com.moriatsushi.insetsx.imePadding
 import com.moriatsushi.insetsx.rememberWindowInsetsController
+import com.moriatsushi.insetsx.safeArea
 import com.moriatsushi.insetsx.systemBars
 
 @Composable
@@ -103,7 +104,7 @@ private fun ExampleTopAppBar(
                 )
             }
         },
-        windowInsets = WindowInsets.systemBars.only(
+        windowInsets = WindowInsets.safeArea.only(
             WindowInsetsSides.Top + WindowInsetsSides.Horizontal
         )
     )
@@ -115,7 +116,7 @@ private fun ExampleBottomAppBar(
 ) {
     BottomAppBar(
         modifier = modifier,
-        windowInsets = WindowInsets.systemBars.only(
+        windowInsets = WindowInsets.safeArea.only(
             WindowInsetsSides.Bottom + WindowInsetsSides.Horizontal
         )
     ) {
