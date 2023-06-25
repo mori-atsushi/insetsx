@@ -65,6 +65,7 @@ kotlin {
                 implementation(compose.ui)
                 implementation(compose.foundation)
                 implementation(compose.material3)
+                implementation(compose.materialIconsExtended)
                 implementation(compose.runtime)
 
                 // Workaround for https://youtrack.jetbrains.com/issue/KT-41821
