@@ -24,7 +24,7 @@ dependencyResolutionManagement {
             version("androidx-appcompat", "1.6.1")
             version("androidx-activity", "1.7.2")
             version("androidx-core", "1.10.1")
-            version("jetbrains-compose", "1.4.0-dev-wasm06")
+            version("jetbrains-compose", "23.10.16.1")
             version("accompanist", "0.30.1")
             version("spotless", "6.22.0")
             version("ktlint", "0.48.1")
