@@ -23,7 +23,7 @@ dependencyResolutionManagement {
             version("agp", "8.1.0")
             version("androidx-appcompat", "1.6.1")
             version("androidx-activity", "1.7.2")
-            version("androidx-core", "1.10.1")
+            version("androidx-core", "1.13.1")
             version("jetbrains-compose", "1.4.0-dev-wasm06")
             version("accompanist", "0.30.1")
             version("spotless", "6.22.0")
