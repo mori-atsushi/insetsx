@@ -28,7 +28,7 @@ dependencyResolutionManagement {
             version("accompanist", "0.30.1")
             version("spotless", "6.22.0")
             version("ktlint", "0.48.1")
-            version("publish", "0.25.3")
+            version("publish", "0.30.0")
 
             library("kotlinx-atomicfu", "org.jetbrains.kotlinx", "atomicfu")
                 .versionRef("kotlinx-atomicfu")
